@@ -45,8 +45,6 @@ public class HealthComponent : MonoBehaviour
             {
                 RaiseDepleted?.Invoke(gameObject, new HealthDepletedData());
             }
-
-            Debug.Log(gameObject + "'s health is now " + _Current);
         }
     }
 
