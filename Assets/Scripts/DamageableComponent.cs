@@ -11,6 +11,7 @@ public class DamageData
 }
 
 [RequireComponent(typeof(HealthComponent))]
+[RequireComponent(typeof(Rigidbody))]
 public class DamageableComponent : MonoBehaviour
 {
     public delegate void HandleDamage(object Sender, DamageData Data);
