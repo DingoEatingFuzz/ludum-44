@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6260216884260259861}
   - component: {fileID: 5480465292063059739}
   - component: {fileID: 298593703}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerBasePrefab
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -72,6 +72,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShipAttempt1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620251513594398808, guid: ea54c2b7b36fe4446b58c2cac31943db,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8895630930562013588, guid: ea54c2b7b36fe4446b58c2cac31943db,
         type: 3}
@@ -142,6 +147,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.35163
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886854303370879859, guid: ea54c2b7b36fe4446b58c2cac31943db,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886854303623293590, guid: ea54c2b7b36fe4446b58c2cac31943db,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea54c2b7b36fe4446b58c2cac31943db, type: 3}
