@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [Tooltip("Max speed of the ship")]
     [Range(0f, float.PositiveInfinity)]
-    public float MoveSpeed = 5;
+    public float MoveSpeed = 10;
 
     [Tooltip("Speed of rotation")]
     [Range(0f, float.PositiveInfinity)]
@@ -64,9 +64,13 @@ public class PlayerController : MonoBehaviour
         {
             RightAxis = Input.GetAxis("Right");
             UpAxis = Input.GetAxis("Up");
+            Velocity = new Vector3(RightAxis, UpAxis, 0).normalized * MoveSpeed;
 
             UpdateMove();
-            UpdateRotate();
+            if (Velocity.magnitude != 0)
+            {
+                UpdateRotate();
+            }
         }
     }
 
@@ -76,7 +80,6 @@ public class PlayerController : MonoBehaviour
     private void UpdateMove()
     {
         //var DesiredVelocity = new Vector3(RightAxis, UpAxis, 0).normalized;
-        Velocity = new Vector3(RightAxis, UpAxis, 0).normalized * MoveSpeed;
 
         //Velocity = Vector3.MoveTowards(Velocity, DesiredVelocity * MoveSpeed, ChangeSpeed);
         transform.position = transform.position + Velocity * Time.deltaTime;
@@ -87,6 +90,10 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void UpdateRotate()
     {
+        var rot = Quaternion.LookRotation(Velocity, transform.up);
+        transform.rotation = rot;
+      //  transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z);
+
 
         // Smoothing is done in the input manager
         //var DesiredRotation = Input.GetAxis("Right") * RotationRate;
