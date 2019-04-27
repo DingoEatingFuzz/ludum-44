@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SphereCollider))]
 public class ProjectileMovementComponent : MonoBehaviour
 {
     [Tooltip("Speed in u/s the projectile moves")]
