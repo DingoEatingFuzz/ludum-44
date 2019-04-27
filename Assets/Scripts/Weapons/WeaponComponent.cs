@@ -81,7 +81,7 @@ public class WeaponComponent : MonoBehaviour
     void UpdateRotate()
     {
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0;
+        mousePos.z = transform.position.z;
         Quaternion rot = Quaternion.LookRotation(mousePos - transform.position, transform.up);
         transform.rotation = rot;
     }
