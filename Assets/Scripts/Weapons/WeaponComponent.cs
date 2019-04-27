@@ -51,6 +51,7 @@ public class WeaponComponent : MonoBehaviour
 
     void Update()
     {
+        UpdateRotate();
         // Track time elapsed since cooldown started
         if (CooldownIsActive) {
             Cooldown += Time.deltaTime;
@@ -66,5 +67,13 @@ public class WeaponComponent : MonoBehaviour
             // Allow for shooting
             Shoot();
         }
+    }
+
+    void UpdateRotate()
+    {
+        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+        Quaternion rot = Quaternion.LookRotation(mousePos - transform.position, transform.up);
+        transform.rotation = rot;
     }
 }
