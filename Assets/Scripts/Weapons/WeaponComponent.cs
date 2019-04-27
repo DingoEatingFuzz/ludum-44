@@ -19,6 +19,8 @@ public class WeaponComponent : MonoBehaviour
     [Tooltip("The amount in degrees a projectile can devaite from perfect accuracy")]
     public float Inaccuracy = 0.0f;
 
+    public bool isActive = false;
+
     private float Cooldown = 0.0f;
     private bool CooldownIsActive = false;
 
@@ -27,6 +29,7 @@ public class WeaponComponent : MonoBehaviour
     /// </summary>
     protected void Awake()
     {
+        gameObject.SetActive(false);
         if (ProjectileSpawnLocation == null)
         {
             throw new UnassignedReferenceException("Did you forget to specify the spawn location?");
@@ -51,21 +54,27 @@ public class WeaponComponent : MonoBehaviour
 
     void Update()
     {
-        UpdateRotate();
-        // Track time elapsed since cooldown started
-        if (CooldownIsActive) {
-            Cooldown += Time.deltaTime;
-        }
+        if (gameObject.activeSelf)
+        {
+            UpdateRotate();
+            // Track time elapsed since cooldown started
+            if (CooldownIsActive)
+            {
+                Cooldown += Time.deltaTime;
+            }
 
-        // Reset cooldown states
-        if (Cooldown > ShotDelay) {
-            Cooldown = 0.0f;
-            CooldownIsActive = false;
-        }
+            // Reset cooldown states
+            if (Cooldown > ShotDelay)
+            {
+                Cooldown = 0.0f;
+                CooldownIsActive = false;
+            }
 
-        if (!CooldownIsActive && Input.GetButton("PrimaryFire")) {
-            // Allow for shooting
-            Shoot();
+            if (!CooldownIsActive && Input.GetButton("PrimaryFire"))
+            {
+                // Allow for shooting
+                Shoot();
+            }
         }
     }
 

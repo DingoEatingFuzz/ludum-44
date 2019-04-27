@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour
     private float RightAxis;
     private float UpAxis;
 
+    public GameObject LaserGun;
+    public GameObject GatlingGun;
+    public GameObject PlasmaGun;
+
     //private IonCannon[] Weapons;
 
 
@@ -41,6 +45,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Start()
     {
+        LaserGun.SetActive(true);
         Activate();
     }
 
