@@ -30,7 +30,7 @@ public class HealthComponent : MonoBehaviour
     public float Current
     {
         get => _Current;
-        protected set
+        set
         {
             if (value == _Current)
             {
@@ -50,6 +50,14 @@ public class HealthComponent : MonoBehaviour
     }
 
     public bool IsDepleted { get => Current == 0f; }
+
+    /// <summary>
+    /// Awake
+    /// </summary>
+    protected void Awake()
+    {
+        Current = Maximum;
+    }
 
     /// <summary>
     /// Attemps to add <paramref name="Amount"/> to health and returns actual amount added
@@ -74,5 +82,14 @@ public class HealthComponent : MonoBehaviour
         Current -= Amount;
 
         return Mathf.Abs(Current - Previous);
+    }
+
+    /// <summary>
+    /// Sets the current health
+    /// </summary>
+    /// <param name="Amount"></param>
+    public void Set(float Amount)
+    {
+        Current = Amount;
     }
 }
