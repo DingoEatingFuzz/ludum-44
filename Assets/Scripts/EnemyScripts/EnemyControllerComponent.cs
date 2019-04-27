@@ -18,6 +18,8 @@ namespace Enemy
 [RequireComponent(typeof(SphereCollider))]
 public abstract class EnemyControllerComponent : MonoBehaviour
 {
+    
+
     protected EnemyState State;
 
 
