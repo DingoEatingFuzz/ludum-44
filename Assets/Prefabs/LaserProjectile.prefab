@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7243667149116872381}
   - component: {fileID: 623663538467560476}
   - component: {fileID: 2354513159291730895}
+  - component: {fileID: 8130856119807221418}
   m_Layer: 10
   m_Name: LaserProjectile
   m_TagString: Untagged
@@ -42,7 +43,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2523376150286977277}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -61,6 +62,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 2
   SecondsToLast: 3
+--- !u!114 &8130856119807221418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2523376150286977277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ad694902a61c84dabc310aa3c754eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageData:
+    Amount: 10
+  Instigator: {fileID: 0}
 --- !u!1 &7543164080975884032
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,31 +176,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7243667149116872381}
     m_Modifications:
-    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.4811321
-      objectReference: {fileID: 0}
-    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.93838423
-      objectReference: {fileID: 0}
-    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
-        type: 3}
-      propertyPath: m_Intensity
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
-        type: 3}
-      propertyPath: m_Range
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 5178517211744943574, guid: ef8727b78bf53554995f534d2598e700,
         type: 3}
       propertyPath: m_Name
@@ -249,6 +240,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.4811321
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.93838423
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
+        type: 3}
+      propertyPath: m_Range
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef8727b78bf53554995f534d2598e700, type: 3}

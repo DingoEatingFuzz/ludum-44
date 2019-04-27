@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthUpdateData
 {
-    public float Health;
+    public float Health = 100f;
 }
 
 public class HealthDepletedData
@@ -21,7 +21,7 @@ public class HealthComponent : MonoBehaviour
     public HandleDepleted RaiseDepleted;
 
     [Tooltip("Maximum health")]
-    public float Maximum;
+    public float Maximum = 100f;
 
     protected float _Current;
     /// <summary>
@@ -37,14 +37,13 @@ public class HealthComponent : MonoBehaviour
                 return;
             }
 
-            _Current = value;
-            Mathf.Clamp(_Current, 0f, Maximum);
+            _Current = Mathf.Clamp(value, 0f, Maximum);
 
-            RaiseUpdated(gameObject, new HealthUpdateData());
+            RaiseUpdated?.Invoke(gameObject, new HealthUpdateData() { Health = _Current });
 
             if (_Current == 0f)
             {
-                RaiseDepleted(gameObject, new HealthDepletedData());
+                RaiseDepleted?.Invoke(gameObject, new HealthDepletedData());
             }
         }
     }
