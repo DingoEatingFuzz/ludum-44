@@ -4,14 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-
-
-
-
-
-
 public class GameStateComponent : MonoBehaviour
 {
     public static GameStateComponent Instance;
@@ -19,7 +11,7 @@ public class GameStateComponent : MonoBehaviour
     protected PersistentData Data;
 
     /// <summary>
-    /// Awake
+    /// Makes sure there is only ever one instance
     /// </summary>
     protected void Awake()
     {

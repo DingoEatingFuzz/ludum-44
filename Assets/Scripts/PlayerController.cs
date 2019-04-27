@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [Tooltip("Max speed of the ship")]
     [Range(0f, float.PositiveInfinity)]
-    public float MoveSpeed = 70;
+    public float MoveSpeed = 5;
 
     [Tooltip("Speed of rotation")]
     [Range(0f, float.PositiveInfinity)]
@@ -18,7 +18,9 @@ public class PlayerController : MonoBehaviour
     private bool CanMove { get; set; }
     public Vector3 Velocity { get; protected set; }
     private float ChangeSpeed;
-    protected Rigidbody RB;
+
+    private float RightAxis;
+    private float UpAxis;
 
     //private IonCannon[] Weapons;
 
@@ -32,7 +34,6 @@ public class PlayerController : MonoBehaviour
         ChangeSpeed = MoveSpeed / Thrust;
 
 //        Weapons = GetComponents<IonCannon>();
-        RB = GetComponent<Rigidbody>();
     }
 
     /// <summary>
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Start()
     {
+        Activate();
     }
 
     /// <summary>
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
         CanMove = true;
         enabled = true;
         SetWeaponsActive(true);
-        GetComponent<Collider>().isTrigger = false;
+        //GetComponent<Collider>().isTrigger = false;
     }
 
     /// <summary>
@@ -60,13 +62,11 @@ public class PlayerController : MonoBehaviour
     {
         if (CanMove)
         {
+            RightAxis = Input.GetAxis("Right");
+            UpAxis = Input.GetAxis("Up");
+
             UpdateMove();
             UpdateRotate();
-        }
-
-        if (RB.velocity.z != 0)
-        {
-            Debug.Log("Velocity: " + RB.velocity + "\nAngular: " + RB.angularVelocity);
         }
     }
 
@@ -75,21 +75,11 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void UpdateMove()
     {
-        var Axis = Input.GetAxis("Up");
-        if (Axis == -1)
-        {
-            Axis = -0.5f;
-        }
+        //var DesiredVelocity = new Vector3(RightAxis, UpAxis, 0).normalized;
+        Velocity = new Vector3(RightAxis, UpAxis, 0).normalized * MoveSpeed;
 
-        var DesiredVelocity = transform.forward * (Axis * MoveSpeed);
-        var Dot = Vector3.Dot(Velocity.normalized, DesiredVelocity.normalized);
-
-        var TurnBoost = 1f + 2 * (1f - Mathf.Abs(Dot));
-        var Slowdown = Axis == 0f ? 0.2f : 1f;
-
-        Velocity = Vector3.MoveTowards(GetComponent<Rigidbody>().velocity, DesiredVelocity, ChangeSpeed * TurnBoost * Slowdown * Time.deltaTime);
-        //transform.position = transform.position + Velocity * Time.deltaTime;
-        GetComponent<Rigidbody>().velocity = Velocity;
+        //Velocity = Vector3.MoveTowards(Velocity, DesiredVelocity * MoveSpeed, ChangeSpeed);
+        transform.position = transform.position + Velocity * Time.deltaTime;
     }
 
     /// <summary>
@@ -97,14 +87,10 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void UpdateRotate()
     {
-        // Smoothing is done in the input manager
-        var DesiredRotation = Input.GetAxis("Right") * RotationRate;
-        transform.Rotate(Vector3.up, DesiredRotation * Time.deltaTime);
 
-        if (DesiredRotation != 0f)
-        {
-            RB.angularVelocity = Vector3.zero;
-        }
+        // Smoothing is done in the input manager
+        //var DesiredRotation = Input.GetAxis("Right") * RotationRate;
+        //transform.Rotate(Vector3.up, DesiredRotation * Time.deltaTime);
     }
 
     void Deactivate()
