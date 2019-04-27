@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ using UnityEngine;
 
 public class Damage
 {
-    public float Amount;
+    public float Amount = 10f;
 }
 
 public class DamagerComponent : MonoBehaviour
@@ -17,8 +18,12 @@ public class DamagerComponent : MonoBehaviour
     [Tooltip("Object ultimately responsible for this damager")]
     public GameObject Instigator;
 
-    protected void OnTriggerEnter(Collider Other)
+    /// <summary>
+    /// Applys damage to the triggering component if they have a damageable component
+    /// </summary>
+    /// <param name="other"></param>
+    protected void OnTriggerEnter(Collider other)
     {
-        Other.GetComponent<DamageableComponent>()?.Damage(Instigator, DamageData.Amount);
+        other.GetComponent<DamageableComponent>()?.Damage(Instigator, DamageData.Amount);
     }
 }
