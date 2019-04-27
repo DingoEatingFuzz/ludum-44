@@ -8,6 +8,9 @@ public class ProjectileMovementComponent : MonoBehaviour
     [Tooltip("Speed in u/s the projectile moves")]
     public float Speed;
 
+    [Tooltip("Time before projectile despawns")]
+    public float SecondsToLast;
+
     protected Vector3 Velocity;
 
     /// <summary>
@@ -16,6 +19,7 @@ public class ProjectileMovementComponent : MonoBehaviour
     protected void Awake()
     {
         Velocity = transform.forward * Speed;
+        Invoke("Despawn", SecondsToLast);
     }
 
     // TODO: Break movement into an overloadable function
@@ -25,5 +29,10 @@ public class ProjectileMovementComponent : MonoBehaviour
     protected void Update()
     {
         transform.position += Velocity;
+    }
+
+    protected void Despawn()
+    {
+        Destroy(gameObject);
     }
 }
