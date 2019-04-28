@@ -77,7 +77,6 @@ public class PlayerController : MonoBehaviour
         CanMove = true;
         enabled = true;
         HornSource = gameObject.GetComponent<AudioSource>();
-        //GetComponent<Collider>().isTrigger = false;
     }
 
     /// <summary>
@@ -125,20 +124,23 @@ public class PlayerController : MonoBehaviour
             Direction.z = 0f;
         }
 
-        //if (Direction.z != 0f)
-        //    Debug.LogWarning("DirectionZ is not zero!");
-        //Debug.Log("Dot: " + Vector3.Dot(Direction, DesiredDirection));
+        if (Direction.z != 0f)
+        {
+            Debug.LogWarning("DirectionZ is not zero!");
+        }
+        Debug.Log("Dot: " + Vector3.Dot(Direction, DesiredDirection));
+        Debug.Log("Direction: " + Direction + " :: Desired: " + DesiredDirection);
 
         if (DesiredDirection != Direction)
         {
             // Speeds up turning larger distances
             var DirectionBoost = 2f - Vector3.Dot(Direction.normalized, DesiredDirection.normalized);
 
-            // Aim to the side if 
-            if (Mathf.Approximately(Vector3.Dot(Direction, DesiredDirection), -1f))
+            // ~~~ If there's a problem with it flipping derpy it's probably because of this ~~~
+            if (Vector3.Dot(Direction, DesiredDirection) < -.99f)
             {
-                // Debug.Log("Using alt smoothing");
-                Direction = Vector3.RotateTowards(Direction, Mathf.RoundToInt(Random.value) == 0 ? transform.right : -transform.right, 0.5f * Mathf.Deg2Rad * RotationRate * DirectionBoost * Time.deltaTime, 0f);
+                 Debug.Log("Using alt smoothing");
+                Direction = Vector3.RotateTowards(Direction, Mathf.RoundToInt(Random.value) == 0 ? transform.right : -transform.right, Mathf.Deg2Rad * RotationRate * DirectionBoost * Time.deltaTime, 0f);
             }
             else
             {
@@ -153,7 +155,7 @@ public class PlayerController : MonoBehaviour
 
         // Smoothly update the velocity
         var CurrentVelocity = Velocity;
-        var DesiredVelocity = transform.forward * MoveSpeed;
+        var DesiredVelocity = AxisDirection * MoveSpeed;
         if (AxisDirection == Vector3.zero)
         {
             DesiredVelocity = Vector3.zero;

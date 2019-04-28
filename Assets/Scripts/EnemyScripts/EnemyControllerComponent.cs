@@ -1,18 +1,20 @@
-﻿using Enemy;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Enemy
+
+public enum EnemyState
 {
-    public enum EnemyState
-    {
-        Dormant,
-        Alerted,
-        Engaged,
-        Retreating
-    }
+    Dormant,
+    Alerted,
+    Engaged,
+    Retreating
+}
+
+[System.Serializable]
+public class EnemyData
+{
 }
 
 [RequireComponent(typeof(SphereCollider))]
