@@ -121,4 +121,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DamageData:
     Amount: 10
+    DestroyOnHit: 1
   Instigator: {fileID: 0}
