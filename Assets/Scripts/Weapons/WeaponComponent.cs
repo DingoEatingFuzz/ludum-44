@@ -19,8 +19,12 @@ public class WeaponComponent : MonoBehaviour
     [Tooltip("The amount in degrees a projectile can devaite from perfect accuracy")]
     public float Inaccuracy = 0.0f;
 
+    [Tooltip("How much health you lost with each shot")]
+    public float HealthCost = 2.0f;
+
     private float Cooldown = 0.0f;
     private bool CooldownIsActive = false;
+    private HealthComponent PlayerHealth;
 
     /// <summary>
     /// Awake
@@ -28,6 +32,7 @@ public class WeaponComponent : MonoBehaviour
     protected void Awake()
     {
         gameObject.SetActive(false);
+        PlayerHealth = gameObject.transform.parent.gameObject.GetComponent<HealthComponent>();
         if (ProjectileSpawnLocation == null)
         {
             throw new UnassignedReferenceException("Did you forget to specify the spawn location?");
@@ -40,6 +45,8 @@ public class WeaponComponent : MonoBehaviour
     }
 
     public void Shoot() {
+        PlayerHealth.Remove(HealthCost);
+        Debug.Log("Health: " + PlayerHealth.Current);
         var BasePosition = ProjectileSpawnLocation.transform.position;
         var Offset = new Vector3(Random.Range(0, SpawnJitter) - SpawnJitter/2, Random.Range(0, SpawnJitter) - SpawnJitter/2, 0);
 
