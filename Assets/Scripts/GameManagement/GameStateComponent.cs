@@ -41,6 +41,6 @@ public class GameStateComponent : MonoBehaviour
 [System.Serializable]
 public struct PersistentData
 {
-
+    // health etc
 }
 

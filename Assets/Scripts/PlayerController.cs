@@ -9,13 +9,19 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("Speed of rotation")]
     [Range(0f, float.PositiveInfinity)]
-    public float RotationRate = 360;
+    public float RotationRate = 300;
 
     [Tooltip("How quickly the ship goes from 0 to max in seconds")]
-    [Range(0f, float.PositiveInfinity)]
+    [Range(0.001f, float.PositiveInfinity)]
     public float Thrust = .5f;
 
+    [Header("Weapons")]
+    public GameObject LaserGun;
+    public GameObject GatlingGun;
+    public GameObject PlasmaGun;
+
     private bool CanMove { get; set; }
+    private Vector3 Direction;
     public Vector3 Velocity { get; protected set; }
     private float ChangeSpeed;
 
@@ -23,22 +29,31 @@ public class PlayerController : MonoBehaviour
     private float UpAxis;
     private AudioSource HornSource;
 
-    public GameObject LaserGun;
-    public GameObject GatlingGun;
-    public GameObject PlasmaGun;
-
-    //private IonCannon[] Weapons;
-
-
     /// <summary>
     /// Awake
     /// </summary>
     protected void Awake()
     {
         Velocity = Vector3.zero;
+        Direction = transform.forward;
         ChangeSpeed = MoveSpeed / Thrust;
 
-//        Weapons = GetComponents<IonCannon>();
+        if (LaserGun == null)
+        {
+            throw new UnassignedReferenceException("LaserGun has not been assigned");
+        }
+
+        if (GatlingGun == null)
+        {
+            throw new UnassignedReferenceException("GatlingGun has not been assigned");
+        }
+
+        if (PlasmaGun == null)
+        {
+            throw new UnassignedReferenceException("PlasmaGun has not been assigned");
+        }
+
+        ActivateWeapon(LaserGun);
     }
 
     /// <summary>
@@ -46,8 +61,12 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Start()
     {
-        LaserGun.SetActive(true);
         Activate();
+    }
+
+    protected void ActivateWeapon(GameObject Weapon)
+    {
+        Weapon?.SetActive(true);
     }
 
     /// <summary>
@@ -70,13 +89,8 @@ public class PlayerController : MonoBehaviour
         {
             RightAxis = Input.GetAxis("Right");
             UpAxis = Input.GetAxis("Up");
-            Velocity = new Vector3(RightAxis, UpAxis, 0).normalized * MoveSpeed;
 
-            UpdateMove();
-            if (Velocity.magnitude != 0)
-            {
-                UpdateRotate();
-            }
+            UpdateMoveTwoPointO();
         }
 
         if (Input.GetButton("SecondaryFire"))
@@ -90,30 +104,65 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void UpdateMove()
     {
-        //var DesiredVelocity = new Vector3(RightAxis, UpAxis, 0).normalized;
 
-        //Velocity = Vector3.MoveTowards(Velocity, DesiredVelocity * MoveSpeed, ChangeSpeed);
         transform.position = transform.position + Velocity * Time.deltaTime;
+
     }
 
     /// <summary>
-    /// Updates and applies rotation
+    /// Better movement because Andrew likes it ~:::S M O O T H:::~
     /// </summary>
-    private void UpdateRotate()
+    protected void UpdateMoveTwoPointO()
     {
-        var rot = Quaternion.LookRotation(Velocity, transform.up);
-        transform.rotation = rot;
-      //  transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z);
+        #region Rotation
 
+        // Smoothly update the rotate
+        var AxisDirection = new Vector3(RightAxis, UpAxis, 0f).normalized;
+        var DesiredDirection = AxisDirection == Vector3.zero ? Direction : AxisDirection;
 
-        // Smoothing is done in the input manager
-        //var DesiredRotation = Input.GetAxis("Right") * RotationRate;
-        //transform.Rotate(Vector3.up, DesiredRotation * Time.deltaTime);
+        if (Mathf.Abs(Direction.z) < 0.001f)
+        {
+            Direction.z = 0f;
+        }
+
+        //if (Direction.z != 0f)
+        //    Debug.LogWarning("DirectionZ is not zero!");
+        //Debug.Log("Dot: " + Vector3.Dot(Direction, DesiredDirection));
+
+        if (DesiredDirection != Direction)
+        {
+            // Speeds up turning larger distances
+            var DirectionBoost = 2f - Vector3.Dot(Direction.normalized, DesiredDirection.normalized);
+
+            // Aim to the side if 
+            if (Mathf.Approximately(Vector3.Dot(Direction, DesiredDirection), -1f))
+            {
+                // Debug.Log("Using alt smoothing");
+                Direction = Vector3.RotateTowards(Direction, Mathf.RoundToInt(Random.value) == 0 ? transform.right : -transform.right, 0.5f * Mathf.Deg2Rad * RotationRate * DirectionBoost * Time.deltaTime, 0f);
+            }
+            else
+            {
+                Direction = Vector3.RotateTowards(Direction, DesiredDirection, Mathf.Deg2Rad * RotationRate * DirectionBoost * Time.deltaTime, 0f);
+            }
+        }
+
+        // Rotate to axis direction
+        transform.rotation = Quaternion.LookRotation(Direction, transform.up); 
+
+        #endregion
+
+        // Smoothly update the velocity
+        var CurrentVelocity = Velocity;
+        var DesiredVelocity = transform.forward * MoveSpeed;
+        if (AxisDirection == Vector3.zero)
+        {
+            DesiredVelocity = Vector3.zero;
+        }
+        var VelocityBoost = 2f - Vector3.Dot(CurrentVelocity.normalized, DesiredVelocity.normalized);
+
+        CurrentVelocity = Vector3.MoveTowards(CurrentVelocity, DesiredVelocity, ChangeSpeed * VelocityBoost * Time.deltaTime);
+
+        // Move the ship
+        transform.position += DesiredVelocity * Time.deltaTime;
     }
-
-    void Deactivate()
-    {
-        // Notify GameManager
-    }
-
 }
