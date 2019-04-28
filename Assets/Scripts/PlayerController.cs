@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour
     {
         CanMove = true;
         enabled = true;
-        SetWeaponsActive(true);
         //GetComponent<Collider>().isTrigger = false;
     }
 
@@ -110,15 +109,4 @@ public class PlayerController : MonoBehaviour
         // Notify GameManager
     }
 
-    /// <summary>
-    /// Changes weapons firing ability
-    /// </summary>
-    /// <param name="Active">Weapons can fire</param>
-    void SetWeaponsActive(bool Active)
-    {
-//        foreach (var Weapon in Weapons)
-//        {
-//            Weapon.CanShoot = Active;
-//        }
-    }
 }

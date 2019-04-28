@@ -19,8 +19,6 @@ public class WeaponComponent : MonoBehaviour
     [Tooltip("The amount in degrees a projectile can devaite from perfect accuracy")]
     public float Inaccuracy = 0.0f;
 
-    public bool isActive = false;
-
     private float Cooldown = 0.0f;
     private bool CooldownIsActive = false;
 
@@ -47,7 +45,8 @@ public class WeaponComponent : MonoBehaviour
 
         var BaseRotation = transform.rotation;
         var RotationOffset = Quaternion.Euler(Random.Range(0, Inaccuracy) - Inaccuracy/2, Random.Range(0, Inaccuracy) - Inaccuracy/2, 0);
-        Instantiate(ProjectileType, BasePosition + Offset, BaseRotation * RotationOffset);
+        var Projectile = Instantiate(ProjectileType, BasePosition + Offset, BaseRotation * RotationOffset);
+        Projectile.GetComponent<DamagerComponent>().Instigator = gameObject.transform.parent.gameObject;
         // Start the cooldown
         CooldownIsActive = true;
     }
