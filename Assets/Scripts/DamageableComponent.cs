@@ -18,6 +18,7 @@ public class DamageableComponent : MonoBehaviour
     public HandleDamage RaiseDamage;
 
     protected HealthComponent Health;
+    protected DeathComponent Death;
 
     /// <summary>
     /// Awake
@@ -25,6 +26,7 @@ public class DamageableComponent : MonoBehaviour
     protected void Awake()
     {
         Health = GetComponent<HealthComponent>();
+        Death = GetComponent<DeathComponent>();
     }
 
     /// <summary>
@@ -40,7 +42,7 @@ public class DamageableComponent : MonoBehaviour
         RaiseDamage?.Invoke(gameObject, new DamageData() { Instigator = Instigator, Amount = Removed });
         if (Health.IsDepleted)
         {
-            GetComponent<DeathComponent>()?.Died(Instigator);
+            Death?.Died(Instigator);
         }
     }
 }
