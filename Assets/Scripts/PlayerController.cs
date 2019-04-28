@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private float RightAxis;
     private float UpAxis;
+    private AudioSource HornSource;
 
     /// <summary>
     /// Awake
@@ -75,6 +76,8 @@ public class PlayerController : MonoBehaviour
     {
         CanMove = true;
         enabled = true;
+        HornSource = gameObject.GetComponent<AudioSource>();
+        //GetComponent<Collider>().isTrigger = false;
     }
 
     /// <summary>
@@ -88,6 +91,11 @@ public class PlayerController : MonoBehaviour
             UpAxis = Input.GetAxis("Up");
 
             UpdateMoveTwoPointO();
+        }
+
+        if (Input.GetButton("SecondaryFire"))
+        {
+            HornSource.Play();
         }
     }
 
