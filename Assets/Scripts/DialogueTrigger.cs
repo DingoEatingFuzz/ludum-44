@@ -26,9 +26,11 @@ public class DialogueTrigger : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player" && Occurrences < MaxOccurrences) {
-            Occurrences++;
             var dialogueManager = other.GetComponent<DialogueManager>();
-            StartCoroutine(RunThroughDialogue(dialogueManager));
+            if (!dialogueManager.IsOpen) {
+                Occurrences++;
+                StartCoroutine(RunThroughDialogue(dialogueManager));
+            }
         }
     }
 
