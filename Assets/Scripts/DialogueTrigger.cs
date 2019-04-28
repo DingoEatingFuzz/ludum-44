@@ -5,6 +5,7 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     // Start is called before the first frame update
+    [TextArea]
     public List<string> Messages = new List<string>(){ "This is a test for Speakonia" };
     public int MaxOccurrences = 1;
     private int Occurrences = 0;
