@@ -27,7 +27,7 @@ public class WeaponComponent : MonoBehaviour
     /// </summary>
     protected void Awake()
     {
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
         if (ProjectileSpawnLocation == null)
         {
             throw new UnassignedReferenceException("Did you forget to specify the spawn location?");

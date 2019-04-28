@@ -8,6 +8,7 @@ using UnityEngine;
 public class Damage
 {
     public float Amount = 10f;
+    public bool DestroyOnHit = false;
 }
 
 public class DamagerComponent : MonoBehaviour
@@ -24,6 +25,14 @@ public class DamagerComponent : MonoBehaviour
     /// <param name="other"></param>
     protected void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<DamageableComponent>()?.Damage(Instigator, DamageData.Amount);
+        var Damageable = other.GetComponent<DamageableComponent>();
+        if (Damageable != null)
+        {
+            Damageable.Damage(Instigator, DamageData.Amount);
+            if (DamageData.DestroyOnHit)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

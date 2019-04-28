@@ -76,6 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DamageData:
     Amount: 10
+    DestroyOnHit: 1
   Instigator: {fileID: 0}
 --- !u!1 &7543164080975884032
 GameObject:
@@ -176,6 +177,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7243667149116872381}
     m_Modifications:
+    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.4811321
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.93838423
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
+        type: 3}
+      propertyPath: m_Range
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5178517211744943574, guid: ef8727b78bf53554995f534d2598e700,
         type: 3}
       propertyPath: m_Name
@@ -240,31 +266,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.4811321
-      objectReference: {fileID: 0}
-    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.93838423
-      objectReference: {fileID: 0}
-    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
-        type: 3}
-      propertyPath: m_Intensity
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
-        type: 3}
-      propertyPath: m_Range
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef8727b78bf53554995f534d2598e700, type: 3}
