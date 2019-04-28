@@ -19,8 +19,6 @@ public class WeaponComponent : MonoBehaviour
     [Tooltip("The amount in degrees a projectile can devaite from perfect accuracy")]
     public float Inaccuracy = 0.0f;
 
-    public bool isActive = false;
-
     private float Cooldown = 0.0f;
     private bool CooldownIsActive = false;
 
@@ -29,7 +27,7 @@ public class WeaponComponent : MonoBehaviour
     /// </summary>
     protected void Awake()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         if (ProjectileSpawnLocation == null)
         {
             throw new UnassignedReferenceException("Did you forget to specify the spawn location?");
