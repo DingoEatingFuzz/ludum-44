@@ -81,6 +81,7 @@ MonoBehaviour:
   ShotDelay: 3
   SpawnJitter: 0
   Inaccuracy: 5
+  HealthCost: 25
 --- !u!1 &8638896763900478136
 GameObject:
   m_ObjectHideFlags: 0

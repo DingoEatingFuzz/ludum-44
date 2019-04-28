@@ -173,3 +173,4 @@ MonoBehaviour:
   ShotDelay: 1
   SpawnJitter: 0
   Inaccuracy: 0
+  HealthCost: 10

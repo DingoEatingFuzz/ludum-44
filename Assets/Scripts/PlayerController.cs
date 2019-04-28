@@ -176,4 +176,10 @@ public class PlayerController : MonoBehaviour
         // Move the ship
         transform.position += DesiredVelocity * Time.deltaTime;
     }
+
+    public void AddUpgrade(string placeholder)
+    {
+        Debug.Log("Purchased " + placeholder);
+
+    }
 }
