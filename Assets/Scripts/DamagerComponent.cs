@@ -26,7 +26,7 @@ public class DamagerComponent : MonoBehaviour
     protected void OnTriggerEnter(Collider other)
     {
         var Damageable = other.GetComponent<DamageableComponent>();
-        if (Damageable != null)
+        if (Damageable != null && other.gameObject != Instigator)
         {
             Damageable.Damage(Instigator, DamageData.Amount);
             if (DamageData.DestroyOnHit)
