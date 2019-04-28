@@ -189,26 +189,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b34dffa7672fc24082f2edcf1d89800, type: 3}
---- !u!1 &503392397 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3534816192230060853, guid: 9b34dffa7672fc24082f2edcf1d89800,
-    type: 3}
-  m_PrefabInstance: {fileID: 431090071}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &503392398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503392397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccb4ffd46434e554baeff050855af29f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DialogueCanvas: {fileID: 4616439949311326656, guid: cd092ef1b8148c84ab6ebf8074ff8438,
-    type: 3}
 --- !u!1001 &718801984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -219,7 +199,7 @@ PrefabInstance:
     - target: {fileID: 7433715641107572910, guid: dfe0d12f4c0949049af52ded8a336aee,
         type: 3}
       propertyPath: m_Name
-      value: MainCameraPrefab (1)
+      value: MainCameraPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 7433715641107572909, guid: dfe0d12f4c0949049af52ded8a336aee,
         type: 3}
@@ -293,7 +273,7 @@ GameObject:
   - component: {fileID: 765540900}
   - component: {fileID: 765540899}
   m_Layer: 0
-  m_Name: Cylinder (1)
+  m_Name: 'Cylinder '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,7 +398,7 @@ GameObject:
   - component: {fileID: 843782940}
   - component: {fileID: 843782939}
   m_Layer: 0
-  m_Name: Cube (5)
+  m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -507,7 +487,7 @@ GameObject:
   - component: {fileID: 1190291506}
   - component: {fileID: 1190291505}
   m_Layer: 0
-  m_Name: Directional Light (1)
+  m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -600,7 +580,7 @@ GameObject:
   - component: {fileID: 1540291108}
   - component: {fileID: 1540291107}
   m_Layer: 0
-  m_Name: BG (1)
+  m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,7 +671,7 @@ GameObject:
   - component: {fileID: 1566242278}
   - component: {fileID: 1566242277}
   m_Layer: 0
-  m_Name: Cube (4)
+  m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -782,7 +762,7 @@ GameObject:
   - component: {fileID: 1981155180}
   - component: {fileID: 1981155179}
   m_Layer: 0
-  m_Name: Cube (6)
+  m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
