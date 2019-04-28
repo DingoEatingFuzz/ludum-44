@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     public GameObject GatlingGun;
     public GameObject PlasmaGun;
 
+    [Header("Debug")]
+    public bool DoDebug = false;
+
     private bool CanMove { get; set; }
     private Vector3 Direction;
     public Vector3 Velocity { get; protected set; }
@@ -124,12 +127,15 @@ public class PlayerController : MonoBehaviour
             Direction.z = 0f;
         }
 
-        if (Direction.z != 0f)
+        if (DoDebug)
         {
-            Debug.LogWarning("DirectionZ is not zero!");
+            if (Direction.z != 0f)
+            {
+                Debug.LogWarning("DirectionZ is not zero!");
+            }
+            Debug.Log("Dot: " + Vector3.Dot(Direction, DesiredDirection));
+            Debug.Log("Direction: " + Direction + " :: Desired: " + DesiredDirection); 
         }
-        Debug.Log("Dot: " + Vector3.Dot(Direction, DesiredDirection));
-        Debug.Log("Direction: " + Direction + " :: Desired: " + DesiredDirection);
 
         if (DesiredDirection != Direction)
         {
@@ -139,7 +145,10 @@ public class PlayerController : MonoBehaviour
             // ~~~ If there's a problem with it flipping derpy it's probably because of this ~~~
             if (Vector3.Dot(Direction, DesiredDirection) < -.99f)
             {
-                 Debug.Log("Using alt smoothing");
+                if (DoDebug)
+                {
+                    Debug.Log("Using alt smoothing"); 
+                }
                 Direction = Vector3.RotateTowards(Direction, Mathf.RoundToInt(Random.value) == 0 ? transform.right : -transform.right, Mathf.Deg2Rad * RotationRate * DirectionBoost * Time.deltaTime, 0f);
             }
             else
