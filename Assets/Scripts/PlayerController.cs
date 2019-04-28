@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private float RightAxis;
     private float UpAxis;
+    private AudioSource HornSource;
 
     public GameObject LaserGun;
     public GameObject GatlingGun;
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
     {
         CanMove = true;
         enabled = true;
+        HornSource = gameObject.GetComponent<AudioSource>();
         //GetComponent<Collider>().isTrigger = false;
     }
 
@@ -75,6 +77,11 @@ public class PlayerController : MonoBehaviour
             {
                 UpdateRotate();
             }
+        }
+
+        if (Input.GetButton("SecondaryFire"))
+        {
+            HornSource.Play();
         }
     }
 

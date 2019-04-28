@@ -1,5 +1,4 @@
-﻿using Management.Persistent;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,22 +25,22 @@ public class GameStateComponent : MonoBehaviour
     }
 
     /// <summary>
-    /// Capies 
+    /// Copies persistent data
     /// </summary>
-    public void PrepareData(PersistentData Data, System.Action Callback)
+    public void StoreData(PersistentData Data, System.Action Callback)
     {
         this.Data = Data;
+        Callback?.Invoke();
     }
 }
 
-namespace Management.Persistent
+
+/// <summary>
+/// Contains stuff that sticks around between levels
+/// </summary>
+[System.Serializable]
+public struct PersistentData
 {
-    /// <summary>
-    /// Contains stuff that sticks around between levels
-    /// </summary>
-    [System.Serializable]
-    public struct PersistentData
-    {
 
-    }
 }
+
