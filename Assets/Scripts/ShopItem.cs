@@ -14,6 +14,7 @@ public class ShopItem : MonoBehaviour
     TextMesh priceText;
     SpriteRenderer careCoinSymbol;
     SpriteRenderer goneIcon;
+    SpriteRenderer poorIcon;
     bool available;
 
     void Start()
@@ -31,6 +32,8 @@ public class ShopItem : MonoBehaviour
         careCoinSymbol = transform.Find("CareCoinSymbol").GetComponent<SpriteRenderer>();
         goneIcon = transform.Find("goneIcon").GetComponent<SpriteRenderer>();
         goneIcon.gameObject.SetActive(false);
+        poorIcon = transform.Find("poorIcon").GetComponent<SpriteRenderer>();
+        poorIcon.gameObject.SetActive(false);
         available = true;
     }
 
@@ -57,6 +60,7 @@ public class ShopItem : MonoBehaviour
                 LightOn();
             } else
             {
+                poorIcon.gameObject.SetActive(true);
                 Debug.Log("Not enough moneys");
             }
         }
@@ -69,6 +73,7 @@ public class ShopItem : MonoBehaviour
             ResetDelays();
             LightOff();
         }
+        poorIcon.gameObject.SetActive(false);
     }
 
     IEnumerator BuyButSlowlyJustInCaseThePlayerChangesTheirMindOrDoesNotRealizeWhatIsHappening(GameObject player) {
