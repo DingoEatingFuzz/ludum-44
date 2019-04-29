@@ -228,5 +228,10 @@ public class PlayerController : MonoBehaviour
 
     void DeathAnimation() {
         Debug.Log("Big boom goes here");
+        GetComponent<Animator>().SetTrigger("Death");
+    }
+
+    void GotoGameOver() {
+        SceneManager.LoadScene("GameOver");
     }
 }
