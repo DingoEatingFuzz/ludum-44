@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-
 public class Damage
 {
     public float Amount = 10f;

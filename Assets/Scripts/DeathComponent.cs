@@ -18,7 +18,7 @@ public class DeathComponent : MonoBehaviour
     {
         if (CanDie)
         {
-            RaiseDied();
+            RaiseDied?.Invoke();
         }
     }
 }

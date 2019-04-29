@@ -12,6 +12,7 @@ public class DamageData
 
 [RequireComponent(typeof(HealthComponent))]
 [RequireComponent(typeof(Rigidbody))]
+[System.Serializable]
 public class DamageableComponent : MonoBehaviour
 {
     public delegate void HandleDamage(object Sender, DamageData Data);
