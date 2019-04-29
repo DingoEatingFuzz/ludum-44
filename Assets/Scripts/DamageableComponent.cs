@@ -41,7 +41,9 @@ public class DamageableComponent : MonoBehaviour
     /// <param name="Amount">Amount of damage to deal</param>
     public void Damage(GameObject Instigator, float Amount /*damage type*/)
     {
-        AudioSource.PlayOneShot(DamageSound);
+        if (Instigator != gameObject) {
+            AudioSource.PlayOneShot(DamageSound);
+        }
         // react to different damage differently e.g., resistance
         var Removed = Health.Remove(Amount);
         RaiseDamage?.Invoke(gameObject, new DamageData() { Instigator = Instigator, Amount = Removed });

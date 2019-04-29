@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour
         enabled = true;
         HornSource = gameObject.GetComponent<AudioSource>();
 
+        GetComponent<DeathComponent>().RaiseDied += DeathAnimation;
     }
 
     public void ActivateWeapon(string WeaponName)
@@ -223,5 +224,9 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Purchased " + placeholder);
 
+    }
+
+    void DeathAnimation() {
+        Debug.Log("Big boom goes here");
     }
 }
