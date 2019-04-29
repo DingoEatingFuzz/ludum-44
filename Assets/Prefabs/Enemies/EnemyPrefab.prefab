@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 3618806482864682925}
   - component: {fileID: 1306212938165957635}
   - component: {fileID: 7490844202479677083}
-  - component: {fileID: 6527051307918680560}
   - component: {fileID: 5202545936298062379}
+  - component: {fileID: 8141179265117769559}
   m_Layer: 9
   m_Name: EnemyPrefab
   m_TagString: Untagged
@@ -153,21 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
-  Message: 
---- !u!114 &6527051307918680560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3600171806446077816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c99ba625ffe4544497395d6708d35f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Type: 2
-  Message: 
+  Message: F to the world
 --- !u!114 &5202545936298062379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +167,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 0}
+--- !u!114 &8141179265117769559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3600171806446077816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5493f83ebc998d42bbffb399f8d58cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanDie: 1
 --- !u!1 &8645085800693663213
 GameObject:
   m_ObjectHideFlags: 0
