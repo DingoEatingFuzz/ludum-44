@@ -232,6 +232,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void GotoGameOver() {
+        Cursor.visible = true;
         SceneManager.LoadScene("GameOver");
     }
 }
