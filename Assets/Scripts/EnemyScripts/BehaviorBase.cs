@@ -34,7 +34,7 @@ public abstract class Behavior : MonoBehaviour
         get => IsRunning || IsAborting;
     }
 
-    public abstract void Run(GameObject Owner, EnemyControllerComponent Controller);
+    public abstract void Run();
     public abstract void Abort();
     public bool ShouldRun
     {

@@ -28,6 +28,7 @@ public class EnemyData
     public Renderer Renderer;
     public EnemyWeaponComponent Weapon;
     public GameObject Self;
+    public EnemyMovementComponent Movement;
     public EnemyState State
     {
         get => Controller.State;
@@ -203,7 +204,8 @@ public class EnemyControllerComponent : MonoBehaviour
             Player = GameObject.FindGameObjectWithTag("Player"),
             Weapon = GetComponent<EnemyWeaponComponent>(),
             Renderer = GetComponentInChildren<Renderer>(),
-            Self = gameObject
+            Self = gameObject,
+            Movement = GetComponentInChildren<EnemyMovementComponent>()
         };
     }
 
@@ -272,7 +274,7 @@ public class EnemyControllerComponent : MonoBehaviour
 
             if (DoGetNext)
             {
-                CurrentBehaviorSet.GetNext().ForEach(e => e.Run(gameObject, this));
+                CurrentBehaviorSet.GetNext().ForEach(e => e.Run());
             }
 
             yield return new WaitForSeconds(CheckInterval);

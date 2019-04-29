@@ -15,7 +15,7 @@ public class EchoBehavior : Behavior
         SetHasAborted();
     }
 
-    public override void Run(GameObject Owner, EnemyControllerComponent Controller)
+    public override void Run()
     {
         SetIsRunning(true);
         SetHasRun();
