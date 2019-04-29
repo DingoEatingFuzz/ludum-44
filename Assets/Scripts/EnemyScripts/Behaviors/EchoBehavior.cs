@@ -10,7 +10,7 @@ public class EchoBehavior : Behavior
     {
     }
 
-    public override void Run(GameObject Owner)
+    public override void Run(GameObject Owner, EnemyControllerComponent Controller)
     {
         Debug.Log("[[[ ECHO: " + Message + " ]]]");
     }
