@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5341905764917950593}
   - component: {fileID: 7887901999434679326}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 4616439949040106628}
   - component: {fileID: 4616439949040106629}
   m_Layer: 5
-  m_Name: Portrait
+  m_Name: PortraitBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

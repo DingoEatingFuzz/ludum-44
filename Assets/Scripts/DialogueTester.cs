@@ -21,7 +21,7 @@ public class DialogueTester : MonoBehaviour
 
     IEnumerator SpawnDialogue() {
         var DialogueManager = gameObject.GetComponent<DialogueManager>();
-        yield return DialogueManager.Write("This is a test for");
-        yield return DialogueManager.Write("Speakonia");
+        yield return DialogueManager.Write("This is a test for", "olympus");
+        yield return DialogueManager.Write("Speakonia", "olympus");
     }
 }

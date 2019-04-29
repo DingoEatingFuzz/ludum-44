@@ -459,20 +459,49 @@ PrefabInstance:
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.data[0]
-      value: Welcome to the shop. This is where you can swap your weapon or buy upgrades.
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.data[1]
-      value: 'Oh, did I forget to tell you? Your life is also currency.
-
-        Everything is based on a Cure Coin economy.'
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.data[2]
-      value: "But before you go wild on upgrades, maybe consider sending some Cure
-        Coin back home. \nI'm sure your family would appreciate it."
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Messages.Array.data[0].Character
+      value: olympus
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Messages.Array.data[0].Message
+      value: Khajiit has wares if you have gold.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Messages.Array.data[1].Character
+      value: shopkeep
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Messages.Array.data[1].Message
+      value: He's right you know.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Messages.Array.data[2].Character
+      value: shopkeep
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Messages.Array.data[2].Message
+      value: 'Just plz no stealing, mmkay?
+
+        (seriously tho)'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a0bb200566fb764f8aebf5cf73bc138, type: 3}

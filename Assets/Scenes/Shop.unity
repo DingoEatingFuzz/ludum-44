@@ -263,6 +263,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b96aec3acf1f884282c62cf45d42420, type: 3}
+--- !u!1001 &709511885
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8364516109860987235, guid: bfeee38076e0e744189eed9b98b931c1,
+        type: 3}
+      propertyPath: m_Name
+      value: GameStatePrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397360238658906039, guid: bfeee38076e0e744189eed9b98b931c1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.9473405
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397360238658906039, guid: bfeee38076e0e744189eed9b98b931c1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3398309
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397360238658906039, guid: bfeee38076e0e744189eed9b98b931c1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.7421875
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397360238658906039, guid: bfeee38076e0e744189eed9b98b931c1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397360238658906039, guid: bfeee38076e0e744189eed9b98b931c1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397360238658906039, guid: bfeee38076e0e744189eed9b98b931c1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397360238658906039, guid: bfeee38076e0e744189eed9b98b931c1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397360238658906039, guid: bfeee38076e0e744189eed9b98b931c1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397360238658906039, guid: bfeee38076e0e744189eed9b98b931c1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397360238658906039, guid: bfeee38076e0e744189eed9b98b931c1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4397360238658906039, guid: bfeee38076e0e744189eed9b98b931c1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bfeee38076e0e744189eed9b98b931c1, type: 3}
 --- !u!1001 &791393281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -399,6 +468,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8718626192010411256, guid: 65e468c6d11e3c443ba750c1e8df06d3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65e468c6d11e3c443ba750c1e8df06d3, type: 3}
 --- !u!1001 &1302828850
@@ -476,7 +550,17 @@ PrefabInstance:
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.data[0]
-      value: How're we livin'? Got any care coin for wares?
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Messages.Array.data[0].Character
+      value: shopkeep
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Messages.Array.data[0].Message
+      value: How're we livin'? Still got some Care Coin left?
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a0bb200566fb764f8aebf5cf73bc138, type: 3}
