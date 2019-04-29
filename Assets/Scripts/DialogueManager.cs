@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class PortraitPair {
+    public string Key;
+    public Sprite Portrait;
+}
+
 public class DialogueManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject DialogueCanvas;
+    public List<PortraitPair> Portraits;
+
     bool AwaitingConfirmation = true;
     bool isOpen = false;
 
@@ -28,11 +36,15 @@ public class DialogueManager : MonoBehaviour
         };
     }
 
-    public IEnumerator Write(string Message) {
+    public IEnumerator Write(string Message, string Character) {
         var dialogue = Instantiate(DialogueCanvas);
+        var characterSprite = CharacterSpriteFor(Character);
 
         var textBox = dialogue.transform.Find("Speech").GetComponent<Text>();
         textBox.text = Message;
+
+        var portrait = dialogue.transform.Find("Portrait").GetComponent<Image>();
+        portrait.sprite = characterSprite;
 
         // Immediately set the dialogue to the open state
         isOpen = true;
@@ -46,5 +58,11 @@ public class DialogueManager : MonoBehaviour
         // Destroy the instantiated dialogue and reset the manager state
         Destroy(dialogue);
         isOpen = false;
+    }
+
+    Sprite CharacterSpriteFor(string Character) {
+        Debug.Log(Character);
+        Debug.Log(Portraits);
+        return Portraits.Find(p => p.Key == Character)?.Portrait;
     }
 }

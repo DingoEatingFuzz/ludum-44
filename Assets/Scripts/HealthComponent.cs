@@ -73,7 +73,7 @@ public class HealthComponent : MonoBehaviour
     /// Attempts to remove <paramref name="Amount"/> and returns actual amount removed
     /// </summary>
     /// <param name="Amount">Amount to remove</param>
-    /// <returns
+    /// <returns>
     public float Remove(float Amount)
     {
         var Previous = Current;

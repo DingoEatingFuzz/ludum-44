@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class MessagePair {
+    public string Character;
+    [TextArea]
+    public string Message;
+}
+
 public class DialogueTrigger : MonoBehaviour
 {
     // Start is called before the first frame update
-    [TextArea]
-    public List<string> Messages = new List<string>(){ "This is a test for Speakonia" };
+    public List<MessagePair> Messages;
     public int MaxOccurrences = 1;
     private int Occurrences = 0;
     void Start()
@@ -37,7 +43,7 @@ public class DialogueTrigger : MonoBehaviour
 
     IEnumerator RunThroughDialogue(DialogueManager dialogueManager) {
         foreach (var message in Messages) {
-            yield return dialogueManager.Write(message);
+            yield return dialogueManager.Write(message.Message, message.Character);
         }
     }
 }
