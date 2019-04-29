@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
     void Activate()
     {
         PersistentData StateData = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateComponent>().GetStoredData();
-        ActiveWeaponName = "laser";
+        ActiveWeaponName = ActiveWeaponName != null ? ActiveWeaponName : "laser";
         if (StateData.MaxHealth > 0)
         {
             DamageModifier = StateData.DamageModifier;
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
             HealthComponent PlayerHealth = gameObject.GetComponent<HealthComponent>();
             PlayerHealth.Maximum = StateData.MaxHealth;
             PlayerHealth.Set(StateData.CurrentHealth);
-        } 
+        }
         ActivateWeapon(ActiveWeaponName);
 
         CanMove = true;
@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
                 Debug.LogWarning("DirectionZ is not zero!");
             }
             Debug.Log("Dot: " + Vector3.Dot(Direction, DesiredDirection));
-            Debug.Log("Direction: " + Direction + " :: Desired: " + DesiredDirection); 
+            Debug.Log("Direction: " + Direction + " :: Desired: " + DesiredDirection);
         }
 
         if (DesiredDirection != Direction)
@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (DoDebug)
                 {
-                    Debug.Log("Using alt smoothing"); 
+                    Debug.Log("Using alt smoothing");
                 }
                 Direction = Vector3.RotateTowards(Direction, Mathf.RoundToInt(Random.value) == 0 ? transform.right : -transform.right, Mathf.Deg2Rad * RotationRate * DirectionBoost * Time.deltaTime, 0f);
             }
@@ -200,7 +200,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Rotate to axis direction
-        transform.rotation = Quaternion.LookRotation(Direction, transform.up); 
+        transform.rotation = Quaternion.LookRotation(Direction, transform.up);
 
         #endregion
 
