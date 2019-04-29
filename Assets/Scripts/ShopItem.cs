@@ -38,6 +38,7 @@ public class ShopItem : MonoBehaviour
     bool available;
     Item item;
     int itemPrice;
+    string lookupKey;
 
     void Start()
     {
@@ -69,16 +70,17 @@ public class ShopItem : MonoBehaviour
             itemSprite = lookup.ItemSprite;
         }
         itemIcon.sprite = itemSprite;
+        lookupKey = lookup.Key;
 
         switch(Type) {
             case ItemType.Weapon:
-                item = ItemDB.Weapons[lookup.Key];
+                item = ItemDB.Weapons[lookupKey];
                 break;
             case ItemType.Upgrade:
-                item = ItemDB.Upgrades[lookup.Key];
+                item = ItemDB.Upgrades[lookupKey];
                 break;
             case ItemType.Charity:
-                item = ItemDB.Charity[lookup.Key];
+                item = ItemDB.Charity[lookupKey];
                 break;
         }
 
@@ -112,7 +114,6 @@ public class ShopItem : MonoBehaviour
             } else
             {
                 poorIcon.gameObject.SetActive(true);
-                Debug.Log("Not enough moneys");
             }
         }
     }
@@ -133,9 +134,21 @@ public class ShopItem : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             delay.enabled = true;
         }
-        Debug.Log("Buy the thing!");
+
+        switch(Type) {
+            case ItemType.Weapon:
+                player.GetComponent<PlayerController>().ActivateWeapon(lookupKey);
+                break;
+            case ItemType.Upgrade:
+                player.GetComponent<PlayerController>().ActivateUpgrade(lookupKey);
+                //item = ItemDB.Upgrades[lookupKey];
+                break;
+            case ItemType.Charity:
+                //item = ItemDB.Charity[lookupKey];
+                break;
+        }
         player.GetComponent<HealthComponent>().Remove(itemPrice);
-        player.GetComponent<PlayerController>().AddUpgrade("placeholder");
+
         available = false;
 
         var color = careCoinSymbol.color;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DeathComponent : MonoBehaviour
 {
+    public delegate void HandleDied();
+    public HandleDied RaiseDied;
+
     [Tooltip("Because what's a death component without the ability to not die")]
     public bool CanDie = true;
 
@@ -13,6 +16,9 @@ public class DeathComponent : MonoBehaviour
     /// <param name="Instigator">Obeject ultimately responsible for the death</param>
     public void Died(GameObject Instigator)
     {
-        Debug.LogWarning("No implementation for Died");
+        if (CanDie)
+        {
+            RaiseDied?.Invoke();
+        }
     }
 }
