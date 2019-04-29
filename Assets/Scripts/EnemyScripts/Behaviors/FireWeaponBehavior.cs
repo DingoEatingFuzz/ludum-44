@@ -20,12 +20,14 @@ public class FireWeaponBehavior : Behavior
     {
         StopFiring(false);
         StopAllCoroutines();
-        IsRunning = false;  
+        SetIsRunning(false);
+        SetHasAborted();
     }
 
     public override void Run(GameObject Owner, EnemyControllerComponent Controller)
     {
-        IsRunning = true;
+        SetIsRunning(true);
+        SetHasRun();
         this.Controller = Controller;
         StartFiring();
     }
@@ -56,5 +58,25 @@ public class FireWeaponBehavior : Behavior
     {
         yield return new WaitForSeconds(Cooldown);
         StartFiring();
+    }
+
+    protected override void SetHasRun()
+    {
+        HasRun = true;
+    }
+
+    protected override void SetHasAborted()
+    {
+        HasAborted = true;
+    }
+
+    protected override void SetIsRunning(bool Running)
+    {
+        IsRunning = Running;
+    }
+
+    protected override void SetIsAborting(bool Aborting)
+    {
+        IsAborting = Aborting;
     }
 }
