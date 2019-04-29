@@ -46,7 +46,10 @@ public struct PersistentData
 {
     public float CurrentHealth;
     public float MaxHealth;
+    public float DamageModifier;
+    public float FireRateModifier;
     public string ActiveWeaponName;
+
 
     //powerups
 
@@ -55,6 +58,8 @@ public struct PersistentData
         HealthComponent PlayerHealth = Player.gameObject.GetComponent<HealthComponent>();
         CurrentHealth = PlayerHealth.Current;
         MaxHealth = PlayerHealth.Maximum;
+        DamageModifier = Player.DamageModifier;
+        FireRateModifier = Player.FireRateModifier;
         ActiveWeaponName = Player.ActiveWeaponName;
     }
 }

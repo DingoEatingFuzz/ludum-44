@@ -158,6 +158,7 @@ MonoBehaviour:
   ProjectileType: {fileID: 4493949610641859199, guid: 764dd39d282809640948040f2db81eff,
     type: 3}
   ShotDelay: 3
+  FireRateDecrease: 0.4
   SpawnJitter: 0
   Inaccuracy: 5
   HealthCost: 25
