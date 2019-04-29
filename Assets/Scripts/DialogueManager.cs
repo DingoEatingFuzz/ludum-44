@@ -61,8 +61,8 @@ public class DialogueManager : MonoBehaviour
     }
 
     Sprite CharacterSpriteFor(string Character) {
-        Debug.Log(Character);
-        Debug.Log(Portraits);
+ //       Debug.Log(Character);
+//        Debug.Log(Portraits);
         return Portraits.Find(p => p.Key == Character)?.Portrait;
     }
 }

@@ -23,7 +23,16 @@ public enum Strategy
 
 public class EnemyData
 {
-    
+    public EnemyControllerComponent Controller;
+    public GameObject Player;
+    public Renderer Renderer;
+    public EnemyWeaponComponent Weapon;
+    public GameObject Self;
+    public EnemyState State
+    {
+        get => Controller.State;
+        set => Controller.State = value;
+    }
 }
 
 [System.Serializable]
@@ -72,24 +81,34 @@ public class BehaviorConfig
             return BehaviorPick;
         }
 
+        List<Behavior> CanRun = Behaviors.Where(e => e.ShouldRun).ToList();
+
         switch (MultiStrategy)
         {
             case Strategy.ExecuteAll:
-                BehaviorPick.AddRange(Behaviors.Where(e => !e.IsRunningOrAborting()));
+                BehaviorPick = CanRun.ToList();
                 break;
             case Strategy.ExecuteRandom:
-                BehaviorPick.Add(Behaviors.Where(e => !e.IsRunningOrAborting()).ElementAt(Mathf.FloorToInt(Random.Range(0, Behaviors.Count))));
+                if (CanRun.Count > 0)
+                {
+                    BehaviorPick.Add(CanRun.ElementAt(Mathf.FloorToInt(Random.Range(0f, CanRun.Count)))); 
+                }
                 break;
             case Strategy.ExecuteSequential:
-                BehaviorPick.Add(Behaviors[CurrentIndex++]); 
+                BehaviorPick.Add(CanRun.First(b => Behaviors.IndexOf(b) > CurrentIndex));
                 break;
             default:
                 break;
         }
 
-        if (MultiStrategy != Strategy.ExecuteAll)
+        if (MultiStrategy != Strategy.ExecuteAll && BehaviorPick.Count > 0)
         {
             CurrentBehavior = BehaviorPick.First();
+            CurrentIndex = Behaviors.IndexOf(CurrentBehavior);
+        } else
+        {
+            CurrentBehavior = null;
+            CurrentIndex = 0;
         }
 
         //Debug.Log(CurrentBehavior);
@@ -119,9 +138,7 @@ public class EnemyControllerComponent : MonoBehaviour
     protected BehaviorConfig CurrentBehaviorSet;
 
     protected StateManager Manager;
-
-    [HideInInspector]
-    public Renderer Renderer { get; protected set; }
+    protected EnemyData Data = new EnemyData();
 
     protected EnemyState _State;
     public EnemyState State
@@ -160,7 +177,11 @@ public class EnemyControllerComponent : MonoBehaviour
     /// </summary>
     protected void Awake()
     {
-        GetComponents();
+        InitEnemyData();
+        GetBehaviors();
+
+        Manager = GetComponent<StateManager>();
+        DeathComponent = GetComponent<DeathComponent>();
 
         if (DeathComponent != null)
         {
@@ -168,26 +189,35 @@ public class EnemyControllerComponent : MonoBehaviour
         }
 
         State = EnemyState.Dormant;
-        Manager.Controller = this;
+        Manager.Data = Data;
+    }
+
+    /// <summary>
+    /// Creates enemydata and sets its members
+    /// </summary>
+    protected void InitEnemyData()
+    {
+        Data = new EnemyData()
+        {
+            Controller = this,
+            Player = GameObject.FindGameObjectWithTag("Player"),
+            Weapon = GetComponent<EnemyWeaponComponent>(),
+            Renderer = GetComponentInChildren<Renderer>(),
+            Self = gameObject
+        };
     }
 
     /// <summary>
     /// Assigns all the behaviors to their appropriate containers based on type
     /// </summary>
-    protected void GetComponents()
+    protected void GetBehaviors()
     {
-        var Behaviors = GetComponents<Behavior>().ToList();
-        DormantBehaviorConfig.Behaviors.AddRange(Behaviors.Where(b => b.Type == EnemyState.Dormant));
-        AlertedBehaviorConfig.Behaviors.AddRange(Behaviors.Where(b => b.Type == EnemyState.Alerted));
-        EngagedBehaviorConfig.Behaviors.AddRange(Behaviors.Where(b => b.Type == EnemyState.Engaged));
-        RetreatBehaviorConfig.Behaviors.AddRange(Behaviors.Where(b => b.Type == EnemyState.Retreat));
-
-        Renderer = GetComponentInChildren<Renderer>();
-        Manager = GetComponent<StateManager>();
-        Weapon = GetComponent<EnemyWeaponComponent>();
-        //GetComponentsInChildren<Component>().ToList().ForEach(c => Debug.Log(c));
-        DeathComponent = GetComponent<DeathComponent>();
-        
+        var Behaviors = GetComponentsInChildren<Behavior>().ToList();
+        Behaviors.ForEach(b => b.Data = Data);
+        DormantBehaviorConfig.Behaviors.AddRange(Behaviors.Where(b => b.StatesToRun.Any(s => s == EnemyState.Dormant)));
+        AlertedBehaviorConfig.Behaviors.AddRange(Behaviors.Where(b => b.StatesToRun.Any(s => s == EnemyState.Alerted)));
+        EngagedBehaviorConfig.Behaviors.AddRange(Behaviors.Where(b => b.StatesToRun.Any(s => s == EnemyState.Engaged)));
+        RetreatBehaviorConfig.Behaviors.AddRange(Behaviors.Where(b => b.StatesToRun.Any(s => s == EnemyState.Retreat)));
     }
 
     /// <summary>
@@ -234,7 +264,7 @@ public class EnemyControllerComponent : MonoBehaviour
                     break;
                 case Strategy.ExecuteRandom:
                 case Strategy.ExecuteSequential:
-                    DoGetNext = !(CurrentBehaviorSet.CurrentBehavior?.IsRunningOrAborting() ?? false);
+                    DoGetNext = CurrentBehaviorSet.CurrentBehavior?.ShouldRun ?? true;
                     break;
                 default:
                     break;
@@ -242,7 +272,7 @@ public class EnemyControllerComponent : MonoBehaviour
 
             if (DoGetNext)
             {
-                CurrentBehaviorSet.GetNext()?.ForEach(e => e.Run(gameObject, this));
+                CurrentBehaviorSet.GetNext().ForEach(e => e.Run(gameObject, this));
             }
 
             yield return new WaitForSeconds(CheckInterval);
@@ -254,7 +284,7 @@ public class EnemyControllerComponent : MonoBehaviour
     /// </summary>
     protected void AbortBehaviors()
     {
-        CurrentBehaviorSet?.Behaviors.ForEach(b => b.Abort());
+        CurrentBehaviorSet?.Behaviors.Where(b => b.ShouldAbort).ToList().ForEach(b => b.Abort());
     }
 
     /// <summary>
@@ -263,7 +293,6 @@ public class EnemyControllerComponent : MonoBehaviour
     protected void Died()
     {
         AbortBehaviors();
-        Debug.Log("DIED");
         // Lolded
         Destroy(gameObject);
     }

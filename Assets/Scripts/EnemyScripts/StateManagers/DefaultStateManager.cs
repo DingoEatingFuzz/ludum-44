@@ -8,18 +8,9 @@ using UnityEngine;
 [System.Serializable]
 public class DefaultStateManager : StateManager
 {
-    protected GameObject Player;
-
-    /// <summary>
-    /// Awake
-    /// </summary>
-    protected void Awake()
+    protected bool IsVisible
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
-        if (Player == null)
-        {
-            throw new MissingReferenceException("Couldn't find the player");
-        }
+        get => Data.Renderer.isVisible;
     }
 
     /// <summary>
@@ -31,14 +22,14 @@ public class DefaultStateManager : StateManager
         {
             if (CanSeePlayer())
             {
-                State = EnemyState.Engaged;
+                Data.State = EnemyState.Engaged;
             } else
             {
-                State = EnemyState.Alerted;
+                Data.State = EnemyState.Alerted;
             }
         } else
         {
-            State = EnemyState.Dormant;
+            Data.State = EnemyState.Dormant;
         }
     }
 
@@ -48,12 +39,12 @@ public class DefaultStateManager : StateManager
     /// <returns>True if the player is visible</returns>
     protected bool CanSeePlayer()
     {
-        var RayStart = transform.position;
-        var RayEnd = Player.transform.position;
+        var RayStart = Data.Controller.transform.position;
+        var RayEnd = Data.Player.transform.position;
 
         if (Physics.Raycast(RayStart, (RayEnd - RayStart).normalized, out RaycastHit Hit))
         {
-            if (Hit.collider.gameObject == Player)
+            if (Hit.collider.gameObject == Data.Player)
             {
                 return true;
             }
@@ -65,8 +56,4 @@ public class DefaultStateManager : StateManager
     /// <summary>
     /// Is this enemy on the player screen
     /// </summary>
-    protected bool IsVisible
-    {
-        get => Controller.Renderer.isVisible;
-    }
 }
