@@ -31,10 +31,7 @@ public class DialogueManager : MonoBehaviour
     public IEnumerator Write(string Message) {
         var dialogue = Instantiate(DialogueCanvas);
 
-        // Hardcoded index to avoid querying children or components. If things
-        // go busted, it may be because the object order in the DialogueCanvas
-        // prefab changed.
-        var textBox = dialogue.transform.GetChild(2).GetComponent<Text>();
+        var textBox = dialogue.transform.Find("Speech").GetComponent<Text>();
         textBox.text = Message;
 
         // Immediately set the dialogue to the open state

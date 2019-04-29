@@ -46,7 +46,6 @@ public class WeaponComponent : MonoBehaviour
 
     public void Shoot() {
         PlayerHealth.Remove(HealthCost);
-        Debug.Log("Health: " + PlayerHealth.Current);
         var BasePosition = ProjectileSpawnLocation.transform.position;
         var Offset = new Vector3(Random.Range(0, SpawnJitter) - SpawnJitter/2, Random.Range(0, SpawnJitter) - SpawnJitter/2, 0);
 

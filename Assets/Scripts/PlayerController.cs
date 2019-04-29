@@ -1,5 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
+[System.Serializable]
+public class WeaponLookup  {
+    [Tooltip("Find the WeapoonKey")]
+    public string Key;
+    public GameObject WeaponObject;
+}
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,9 +25,8 @@ public class PlayerController : MonoBehaviour
     public float Thrust = .5f;
 
     [Header("Weapons")]
-    public GameObject LaserGun;
-    public GameObject GatlingGun;
-    public GameObject PlasmaGun;
+    public List<WeaponLookup> Weapons;
+    public string ActiveWeaponName;
 
     [Header("Debug")]
     public bool DoDebug = false;
@@ -40,23 +48,6 @@ public class PlayerController : MonoBehaviour
         Velocity = Vector3.zero;
         Direction = transform.forward;
         ChangeSpeed = MoveSpeed / Thrust;
-
-        if (LaserGun == null)
-        {
-            throw new UnassignedReferenceException("LaserGun has not been assigned");
-        }
-
-        if (GatlingGun == null)
-        {
-            throw new UnassignedReferenceException("GatlingGun has not been assigned");
-        }
-
-        if (PlasmaGun == null)
-        {
-            throw new UnassignedReferenceException("PlasmaGun has not been assigned");
-        }
-
-        ActivateWeapon(LaserGun);
     }
 
     /// <summary>
@@ -67,19 +58,41 @@ public class PlayerController : MonoBehaviour
         Activate();
     }
 
-    protected void ActivateWeapon(GameObject Weapon)
-    {
-        Weapon?.SetActive(true);
-    }
-
     /// <summary>
     /// Enables movement and firing
     /// </summary>
     void Activate()
     {
+        PersistentData StateData = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateComponent>().GetStoredData();
+        ActiveWeaponName = "laser";
+        if (StateData.MaxHealth > 0)
+        {
+            ActiveWeaponName = StateData.ActiveWeaponName;
+
+            HealthComponent PlayerHealth = gameObject.GetComponent<HealthComponent>();
+            PlayerHealth.Maximum = StateData.MaxHealth;
+            PlayerHealth.Set(StateData.CurrentHealth);
+        } 
+        ActivateWeapon(ActiveWeaponName);
+
         CanMove = true;
         enabled = true;
         HornSource = gameObject.GetComponent<AudioSource>();
+
+    }
+
+    public void ActivateWeapon(string WeaponName)
+    {
+        if (WeaponName != "")
+        {
+            GameObject lookup = Weapons.Find((WeaponLookup w) => w.Key == WeaponName)?.WeaponObject.gameObject;
+            if (lookup != null)
+            {
+                Weapons.Find((WeaponLookup w) => w.Key == ActiveWeaponName)?.WeaponObject.gameObject.SetActive(false);
+                lookup.SetActive(true);
+            }
+            ActiveWeaponName = WeaponName;
+        }
     }
 
     /// <summary>
@@ -98,6 +111,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("SecondaryFire"))
         {
             HornSource.Play();
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateComponent>().StoreData();
+            SceneManager.LoadScene("SampleScene");
         }
     }
 
