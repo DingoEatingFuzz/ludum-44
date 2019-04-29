@@ -12,22 +12,25 @@ public class CamFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        PlayerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
         Center = new Vector3(0, 0, transform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-        var NewPosition = new Vector3(PlayerTransform.position.x, PlayerTransform.position.y, transform.position.z);
-        if (Mathf.Abs(NewPosition.x) > MaxX)
+        if (PlayerTransform != null)
         {
-            NewPosition.x = transform.position.x;
+            var NewPosition = new Vector3(PlayerTransform.position.x, PlayerTransform.position.y, transform.position.z);
+            if (Mathf.Abs(NewPosition.x) > MaxX)
+            {
+                NewPosition.x = transform.position.x;
+            }
+            if (Mathf.Abs(NewPosition.y) > MaxY)
+            {
+                NewPosition.y = transform.position.y;
+            }
+            transform.position = NewPosition;
         }
-        if (Mathf.Abs(NewPosition.y) > MaxY)
-        {
-            NewPosition.y = transform.position.y;
-        }
-        transform.position = NewPosition;
     }
 }
