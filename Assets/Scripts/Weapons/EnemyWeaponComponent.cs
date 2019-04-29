@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class EnemyWeaponComponent : MonoBehaviour
 {
-    [Tooltip("Which projectile to shoot")]
-    public GameObject ProjectileType;
-
     [Tooltip("Minimum time between shots")]
     public float FiringInterval = .5f;
 
@@ -16,6 +14,12 @@ public class EnemyWeaponComponent : MonoBehaviour
     [Tooltip("Spread of bullets in degrees\nNote: E.g., 60 means 30 off center in both directions")]
     public float Spread = 0f;
 
+    [Tooltip("Which projectile to shoot")]
+    public GameObject ProjectileType;
+
+    [Tooltip("Audio to play when weapon fires")]
+    public AudioClip FiringSound;
+
     /// <summary>
     /// True if the gun is being fired
     /// </summary>
@@ -23,6 +27,7 @@ public class EnemyWeaponComponent : MonoBehaviour
 
     protected bool CanFire;
     protected float NextShotTime;
+    protected AudioSource AudioSource;
 
     /// <summary>
     /// Awake
@@ -30,6 +35,7 @@ public class EnemyWeaponComponent : MonoBehaviour
     protected void Awake()
     {
         CanFire = false;
+        AudioSource = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -70,6 +76,7 @@ public class EnemyWeaponComponent : MonoBehaviour
         var RotationOffset = Quaternion.Euler(Random.Range(0f, Spread) - Spread / 2f, Random.Range(0f, Spread) - Spread / 2f, 0f);
 
         var Projectile = Instantiate(ProjectileType, SpawnLoction + LocationOffset, SpawnRotation * RotationOffset);
-        Projectile.GetComponent<DamagerComponent>().Instigator = gameObject.transform.parent.gameObject;
+        Projectile.GetComponent<DamagerComponent>().Instigator = gameObject;
+        AudioSource.PlayOneShot(FiringSound);
     }
 }
