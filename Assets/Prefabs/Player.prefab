@@ -241,6 +241,8 @@ MonoBehaviour:
     Portrait: {fileID: 21300000, guid: 65614c6312f922b4da20cdbe097d3600, type: 3}
   - Key: unknown
     Portrait: {fileID: 21300000, guid: 86f91b1efc5590c46a7d087269df4162, type: 3}
+  - Key: max
+    Portrait: {fileID: 21300000, guid: c6031d96cf5fa384bb465b4bed7272da, type: 3}
 --- !u!82 &806299574298023543
 AudioSource:
   m_ObjectHideFlags: 0
