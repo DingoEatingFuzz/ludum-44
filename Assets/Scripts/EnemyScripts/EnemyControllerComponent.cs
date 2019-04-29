@@ -10,13 +10,13 @@ public enum EnemyState
     Dormant,
     Alerted,
     Engaged,
-    Retreating
+    Retreat
 }
 
 public enum Strategy
 {
-    ExecuteAll,
     ExecuteRandom,
+    ExecuteAll,
     ExecuteSequential
 }
 
@@ -29,22 +29,16 @@ public class EnemyData
 public class BehaviorConfig
 {
     [Tooltip("Which behavior(s) to run on state")]
-    public Behavior[] Behaviors;
+    [HideInInspector]
+    public List<Behavior> Behaviors = new List<Behavior>();
 
     [Tooltip("How should multiple behaviors be handled")]
-    public Strategy Strategy;
+    public Strategy MultiStrategy;
+
+    [HideInInspector]
+    public Behavior CurrentBehavior;
 
     public EnemyData Data { get; protected set; } = new EnemyData();
-
-    /// <summary>
-    /// Removes null values from the behaviors
-    /// </summary>
-    public void Cleanup()
-    {
-        Behaviors = Behaviors.Where(b => b != null).ToArray();
-    }
-
-    public Behavior CurrentBehavior;
 
     protected int _currentIndex = 0;
     // Used by the sequential strategy
@@ -53,7 +47,7 @@ public class BehaviorConfig
         get => _currentIndex;
         set
         {
-            if (value != _currentIndex && (value < 0 || value >= Behaviors.Length))
+            if (value != _currentIndex && (value < 0 || value >= Behaviors.Count))
             {
                 _currentIndex = 0;
             } else
@@ -70,50 +64,37 @@ public class BehaviorConfig
     public List<Behavior> GetNext()
     {
         var BehaviorPick = new List<Behavior>();
+        CurrentBehavior = null;
 
-        switch (Strategy)
+        if (Behaviors.Count == 0)
+        {
+            return BehaviorPick;
+        }
+
+        switch (MultiStrategy)
         {
             case Strategy.ExecuteAll:
-                BehaviorPick = Behaviors.Where(e => !e.IsRunningOrAborting()).ToList();
+                BehaviorPick.AddRange(Behaviors.Where(e => !e.IsRunningOrAborting()));
                 break;
             case Strategy.ExecuteRandom:
-                BehaviorPick.Concat(new[] { Behaviors.Where(e => !e.IsRunningOrAborting()).ElementAt(new System.Random().Next(Behaviors.Length))});
+                BehaviorPick.Add(Behaviors.Where(e => !e.IsRunningOrAborting()).ElementAt(Mathf.FloorToInt(Random.Range(0, Behaviors.Count))));
                 break;
             case Strategy.ExecuteSequential:
-                BehaviorPick.Concat(new[] { Behaviors[CurrentIndex++] });
+                BehaviorPick.Add(Behaviors[CurrentIndex++]); 
                 break;
             default:
                 break;
         }
 
-        CurrentBehavior = BehaviorPick.Count == 0 ? null : BehaviorPick[0];
+        if (MultiStrategy != Strategy.ExecuteAll)
+        {
+            CurrentBehavior = BehaviorPick.First();
+        }
+
+        //Debug.Log(CurrentBehavior);
+
         return BehaviorPick;
     }
-}
-
-/// <summary>
-/// Figures out what state the controller should be in
-/// </summary>
-public abstract class StateManager : MonoBehaviour
-{
-
-    protected EnemyControllerComponent Controller;
-    protected float UpdateInterval = 0.5f;
-
-    protected EnemyState _State;
-    protected EnemyState State
-    {
-        get => _State;
-        set => Controller.State = _State;
-    }
-
-    public StateManager(EnemyControllerComponent Controller)
-    {
-        this.Controller = Controller;
-        State = Controller.State;
-    }
-
-    public abstract void CheckState();
 }
 
 /// <summary>
@@ -121,32 +102,25 @@ public abstract class StateManager : MonoBehaviour
 /// </summary>
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(DamageableComponent))]
-[RequireComponent(typeof(Renderer))]
+[RequireComponent(typeof(StateManager))]
 public class EnemyControllerComponent : MonoBehaviour
 {
     [Tooltip("How often should update it's state")]
     public float CheckInterval = .5f;
 
-    [Header("Behaviors")]
-    [Tooltip("Behavior to run in the DORMANT state")]
-    public BehaviorConfig DormantBehaviors;
+    //[Tooltip("Which weapon to use")]
+    public WeaponComponent Weapon { get; protected set; }
 
-    [Tooltip("Behavior to run in the ALERTED state")]
-    public BehaviorConfig AlertedBehaviors;
+    public BehaviorConfig DormantBehaviorConfig;// = new BehaviorConfig();
+    public BehaviorConfig AlertedBehaviorConfig;// = new BehaviorConfig();
+    public BehaviorConfig EngagedBehaviorConfig;// = new BehaviorConfig();
+    public BehaviorConfig RetreatBehaviorConfig;// = new BehaviorConfig();
+    protected BehaviorConfig CurrentBehaviorSet;
 
-    [Tooltip("Behavior to run in the ENGAGED state")]
-    public BehaviorConfig EngagedBehaviors;
+    protected StateManager Manager;
 
-    [Tooltip("Behavior to run in the RETREATING state")]
-    public BehaviorConfig RetreatingBehaviors;
-
-    [Header("State")]
-    [Tooltip("Which state manager to use")]
-    public StateManager Manager;
-
-    [Header("Weapon")]
-    [Tooltip("Which weapon to use")]
-    public WeaponComponent Weapon;
+    [HideInInspector]
+    public Renderer Renderer { get; protected set; }
 
     protected EnemyState _State;
     public EnemyState State
@@ -154,17 +128,28 @@ public class EnemyControllerComponent : MonoBehaviour
         get => _State;
         set
         {
-            if (value != _State)
+             AbortBehaviors();
+            switch (value)
             {
-                AbortBehaviors();
-                _State = value;
+                case EnemyState.Dormant:
+                    CurrentBehaviorSet = DormantBehaviorConfig;
+                    break;
+                case EnemyState.Alerted:
+                    CurrentBehaviorSet = AlertedBehaviorConfig;
+                    break;
+                case EnemyState.Engaged:
+                    CurrentBehaviorSet = EngagedBehaviorConfig;
+                    break;
+                case EnemyState.Retreat:
+                    CurrentBehaviorSet = RetreatBehaviorConfig;
+                    break;
+                default:
+                    break;
             }
+            _State = value;
         }
     }
 
-    public Renderer Renderer { get; protected set; }
-
-    protected BehaviorConfig CurrentBehaviorSet;
     protected DeathComponent DeathComponent;
     protected Coroutine CheckRoutine;
 
@@ -173,21 +158,36 @@ public class EnemyControllerComponent : MonoBehaviour
     /// </summary>
     protected void Awake()
     {
-        State = EnemyState.Dormant;
-        CurrentBehaviorSet = DormantBehaviors;
+        GetComponents();
 
-        DeathComponent = gameObject.GetComponent<DeathComponent>();
         if (DeathComponent != null)
         {
             DeathComponent.RaiseDied += Died;
         }
 
-        DormantBehaviors.Cleanup();
-        AlertedBehaviors.Cleanup();
-        EngagedBehaviors.Cleanup();
-        RetreatingBehaviors.Cleanup();
+        State = EnemyState.Dormant;
+        Manager.Controller = this;
+    }
 
-        Renderer = GetComponent<Renderer>();
+    /// <summary>
+    /// Assigns all the behaviors to their appropriate containers based on type
+    /// </summary>
+    protected void GetComponents()
+    {
+        var Behaviors = GetComponents<Behavior>().ToList();
+        DormantBehaviorConfig.Behaviors.AddRange(Behaviors.Where(b => b.Type == EnemyState.Dormant));
+        AlertedBehaviorConfig.Behaviors.AddRange(Behaviors.Where(b => b.Type == EnemyState.Alerted));
+        EngagedBehaviorConfig.Behaviors.AddRange(Behaviors.Where(b => b.Type == EnemyState.Engaged));
+        RetreatBehaviorConfig.Behaviors.AddRange(Behaviors.Where(b => b.Type == EnemyState.Retreat));
+
+        Renderer = GetComponentInChildren<Renderer>();
+        Manager = GetComponent<StateManager>();
+
+        var Weapons = GetComponentsInChildren<WeaponComponent>(true).ToList();
+        Weapon = Weapons.First();
+
+        DeathComponent = GetComponent<DeathComponent>();
+        
     }
 
     /// <summary>
@@ -224,15 +224,17 @@ public class EnemyControllerComponent : MonoBehaviour
     {
         do
         {
+            Manager.CheckState();
+
             var DoGetNext = false;
-            switch (CurrentBehaviorSet.Strategy)
+            switch (CurrentBehaviorSet.MultiStrategy)
             {
                 case Strategy.ExecuteAll:
                     DoGetNext = true;
                     break;
                 case Strategy.ExecuteRandom:
                 case Strategy.ExecuteSequential:
-                    DoGetNext = !CurrentBehaviorSet.CurrentBehavior?.IsRunningOrAborting() ?? true;
+                    DoGetNext = !(CurrentBehaviorSet.CurrentBehavior?.IsRunningOrAborting() ?? false);
                     break;
                 default:
                     break;
@@ -240,7 +242,7 @@ public class EnemyControllerComponent : MonoBehaviour
 
             if (DoGetNext)
             {
-                CurrentBehaviorSet.GetNext().ForEach(e => e.Run(gameObject));
+                CurrentBehaviorSet.GetNext()?.ForEach(e => e.Run(gameObject));
             }
 
             yield return new WaitForSeconds(CheckInterval);
@@ -252,7 +254,7 @@ public class EnemyControllerComponent : MonoBehaviour
     /// </summary>
     protected void AbortBehaviors()
     {
-        Array.ForEach(CurrentBehaviorSet.Behaviors, e => e.Abort());
+        CurrentBehaviorSet?.Behaviors.ForEach(b => b.Abort());
     }
 
     /// <summary>

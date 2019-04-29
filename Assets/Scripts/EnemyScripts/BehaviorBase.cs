@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class Behavior : MonoBehaviour
 {
+    [Tooltip("During which state should this script run?")]
+    public EnemyState Type;
+
     public bool IsRunning { get; protected set; }
     public bool IsAborting { get; protected set; }
     public bool IsRunningOrAborting()

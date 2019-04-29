@@ -5,20 +5,17 @@ using UnityEngine;
 /// <summary>
 /// 
 /// </summary>
+[System.Serializable]
 public class DefaultStateManager : StateManager
 {
     protected GameObject Player;
-
-    public DefaultStateManager(EnemyControllerComponent Controller) : base(Controller)
-    {
-    }
 
     /// <summary>
     /// Awake
     /// </summary>
     protected void Awake()
     {
-        Player = GameObject.FindGameObjectWithTag("player");
+        Player = GameObject.FindGameObjectWithTag("Player");
         if (Player == null)
         {
             throw new MissingReferenceException("Couldn't find the player");
@@ -51,6 +48,10 @@ public class DefaultStateManager : StateManager
     /// <returns>True if the player is visible</returns>
     protected bool CanSeePlayer()
     {
+        if (Controller.Weapon == null)
+        {
+            return;
+        }
         var RayStart = Controller.Weapon.ProjectileSpawnLocation.transform.position;
         var RayEnd = Player.transform.position;
 
