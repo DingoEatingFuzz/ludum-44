@@ -152,13 +152,13 @@ MonoBehaviour:
   RotationRate: 500
   Thrust: 0.5
   Weapons:
-  - Key: Laser
+  - Key: laser
     WeaponObject: {fileID: 6764835458234628261}
-  - Key: Gatling
+  - Key: gatling
     WeaponObject: {fileID: 6174973719015669275}
-  - Key: Plasma
+  - Key: plasma
     WeaponObject: {fileID: 7697428137923360765}
-  ActiveWeaponName: Laser
+  ActiveWeaponName: laser
   DoDebug: 0
 --- !u!114 &5536948049619459503
 MonoBehaviour:

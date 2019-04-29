@@ -25,10 +25,6 @@ public class PlayerController : MonoBehaviour
     public float Thrust = .5f;
 
     [Header("Weapons")]
-    //public GameObject LaserGun;
-    //public GameObject GatlingGun;
-    //public GameObject PlasmaGun;
-
     public List<WeaponLookup> Weapons;
     public string ActiveWeaponName;
 
@@ -68,7 +64,7 @@ public class PlayerController : MonoBehaviour
     void Activate()
     {
         PersistentData StateData = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateComponent>().GetStoredData();
-        ActiveWeaponName = "Laser";
+        ActiveWeaponName = "laser";
         if (StateData.MaxHealth > 0)
         {
             ActiveWeaponName = StateData.ActiveWeaponName;
@@ -85,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    protected void ActivateWeapon(string WeaponName)
+    public void ActivateWeapon(string WeaponName)
     {
         if (WeaponName != "")
         {
