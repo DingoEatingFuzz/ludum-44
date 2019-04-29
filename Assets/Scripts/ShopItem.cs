@@ -19,7 +19,6 @@ public class ItemLookup  {
 
 public class ShopItem : MonoBehaviour
 {
-    public int ItemPrice;
     public ItemType Type;
 
     [Tooltip("Leave blank to choose a random item of the Type")]
@@ -37,6 +36,8 @@ public class ShopItem : MonoBehaviour
     SpriteRenderer poorIcon;
     Sprite itemSprite;
     bool available;
+    Item item;
+    int itemPrice;
 
     void Start()
     {
@@ -47,9 +48,6 @@ public class ShopItem : MonoBehaviour
         indicatorLight = transform.Find("light").GetComponent<Light>();
         baseIntensity = indicatorLight.intensity;
 
-        priceText = transform.Find("price").GetComponent<TextMesh>();
-        priceText.text = ItemPrice + "cc";
-
         careCoinSymbol = transform.Find("CareCoinSymbol").GetComponent<SpriteRenderer>();
         itemIcon = transform.Find("ItemIcon").GetComponent<SpriteRenderer>();
         poorIcon = transform.Find("poorIcon").GetComponent<SpriteRenderer>();
@@ -57,19 +55,37 @@ public class ShopItem : MonoBehaviour
         available = true;
 
         // Attempt to fetch the provided item sprite
-        Debug.Log("ItemKey: " + ItemKey);
+        ItemLookup lookup = AllSprites[0];
+
         if (ItemKey != "") {
-            var lookup = AllSprites.Find((ItemLookup l) => l.Type == Type && l.Key == ItemKey);
+            lookup = AllSprites.Find((ItemLookup l) => l.Type == Type && l.Key == ItemKey);
             itemSprite = lookup?.ItemSprite;
         }
+
         // If there is nothing set, for the set item is invalid, choose at random among the Type
-        Debug.Log("ItemSprite: " + itemSprite);
         if (itemSprite == null) {
             var lookupsByType = AllSprites.FindAll((ItemLookup l) => l.Type == Type);
-            itemSprite = lookupsByType[Mathf.FloorToInt(Random.Range(0, lookupsByType.Count))].ItemSprite;
-            Debug.Log("No Sprite, chose one at random: " + itemSprite);
+            lookup = lookupsByType[Mathf.FloorToInt(Random.Range(0, lookupsByType.Count))];
+            itemSprite = lookup.ItemSprite;
         }
         itemIcon.sprite = itemSprite;
+
+        switch(Type) {
+            case ItemType.Weapon:
+                item = ItemDB.Weapons[lookup.Key];
+                break;
+            case ItemType.Upgrade:
+                item = ItemDB.Upgrades[lookup.Key];
+                break;
+            case ItemType.Charity:
+                item = ItemDB.Charity[lookup.Key];
+                break;
+        }
+
+        itemPrice = item.price;
+
+        priceText = transform.Find("price").GetComponent<TextMesh>();
+        priceText.text = itemPrice + "cc";
     }
 
     void ResetDelays() {
@@ -88,7 +104,7 @@ public class ShopItem : MonoBehaviour
     {
         if (available && other.tag == "Player")
         {
-            if (other.gameObject.GetComponent<HealthComponent>().Current >= ItemPrice)
+            if (other.gameObject.GetComponent<HealthComponent>().Current >= itemPrice)
             {
                 purchaseDelay = BuyButSlowlyJustInCaseThePlayerChangesTheirMindOrDoesNotRealizeWhatIsHappening(other.gameObject);
                 StartCoroutine(purchaseDelay);
@@ -118,7 +134,7 @@ public class ShopItem : MonoBehaviour
             delay.enabled = true;
         }
         Debug.Log("Buy the thing!");
-        player.GetComponent<HealthComponent>().Remove(ItemPrice);
+        player.GetComponent<HealthComponent>().Remove(itemPrice);
         player.GetComponent<PlayerController>().AddUpgrade("placeholder");
         available = false;
 
