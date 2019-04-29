@@ -38,7 +38,6 @@ public class DamageableComponent : MonoBehaviour
     public void Damage(GameObject Instigator, float Amount /*damage type*/)
     {
         // react to different damage differently e.g., resistance
-
         var Removed = Health.Remove(Amount);
         RaiseDamage?.Invoke(gameObject, new DamageData() { Instigator = Instigator, Amount = Removed });
         if (Health.IsDepleted)

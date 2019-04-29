@@ -12,4 +12,31 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+    // Start is called before the first frame update
+    bool AwaitingConfirmation = true;
+    bool isOpen = false;
+
+    public bool IsOpen
+    {
+        get
+        {
+            return isOpen;
+        }
+    }
+    void Start()
+    {
+
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        if (AwaitingConfirmation && Input.GetButton("PayRespects"))
+        {
+            AwaitingConfirmation = false;
+        };
+        if (AwaitingConfirmation == false)
+        {
+            SceneManager.LoadScene("MainMenu");
+        };
+    }
 }

@@ -9646,6 +9646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageData:
-    Amount: 10
+    Amount: 20
+    DamageIncreaseModifier: 3
     DestroyOnHit: 1
   Instigator: {fileID: 0}

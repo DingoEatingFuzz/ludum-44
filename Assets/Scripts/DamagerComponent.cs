@@ -7,6 +7,7 @@ using UnityEngine;
 public class Damage
 {
     public float Amount = 10f;
+    public float DamageIncreaseModifier = 1f;
     public bool DestroyOnHit = false;
 }
 
@@ -27,7 +28,9 @@ public class DamagerComponent : MonoBehaviour
         var Damageable = other.GetComponent<DamageableComponent>();
         if (Damageable != null && other.gameObject != Instigator)
         {
-            Damageable.Damage(Instigator, DamageData.Amount);
+            var Player = Instigator.GetComponent<PlayerController>();
+            var BonusDamage = (Player == null ? 0 : Player.DamageModifier) * DamageData.DamageIncreaseModifier;
+            Damageable.Damage(Instigator, DamageData.Amount + BonusDamage);
             if (DamageData.DestroyOnHit)
             {
                 Destroy(gameObject);
