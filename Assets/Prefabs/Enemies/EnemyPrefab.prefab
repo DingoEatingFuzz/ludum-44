@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 8373896260879854672}
   - component: {fileID: 7507902603004391437}
   - component: {fileID: 2698188209980429850}
-  - component: {fileID: 5692761762609691207}
+  - component: {fileID: 5990081077404388267}
+  - component: {fileID: 2847239562229119610}
+  - component: {fileID: 3618806482864682925}
+  - component: {fileID: 1608487187431923465}
   m_Layer: 9
   m_Name: EnemyPrefab
   m_TagString: Untagged
@@ -63,7 +66,7 @@ MonoBehaviour:
     Amount: 10
     DestroyOnHit: 0
   Instigator: {fileID: 3600171806446077816}
---- !u!114 &5692761762609691207
+--- !u!114 &5990081077404388267
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,9 +75,64 @@ MonoBehaviour:
   m_GameObject: {fileID: 3600171806446077816}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66748d9c6f5372b41a998ed56a42f4ed, type: 3}
+  m_Script: {fileID: 11500000, guid: ed4eefa75db2d6348a932f51449747e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Maximum: 100
+--- !u!54 &2847239562229119610
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3600171806446077816}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &3618806482864682925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3600171806446077816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c9dff44c9e792b4baae97ec2b572b63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1608487187431923465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3600171806446077816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67461c423f66091419245acccb30197b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DormantBehaviors:
+    Behaviors:
+    - {fileID: 0}
+    Strategy: 0
+  AlertedBehaviors:
+    Behaviors: []
+    Strategy: 0
+  EngagedBehaviors:
+    Behaviors: []
+    Strategy: 0
+  RetreatingBehaviors:
+    Behaviors: []
+    Strategy: 0
+  Manager: {fileID: 0}
 --- !u!1 &8645085800693663213
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,6 +209,6 @@ SpriteRenderer:
   m_Size: {x: 14.4, y: 9}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
