@@ -38,7 +38,6 @@ public class HealthComponent : MonoBehaviour
             }
 
             _Current = Mathf.Clamp(value, 0f, Maximum);
-
             RaiseUpdated?.Invoke(gameObject, new HealthUpdateData() { Health = _Current });
 
             if (_Current == 0f)
