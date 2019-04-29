@@ -473,6 +473,15 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 298593703, guid: 65e468c6d11e3c443ba750c1e8df06d3, type: 3}
+      propertyPath: ActiveWeaponName
+      value: gatling
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497745276927780321, guid: 65e468c6d11e3c443ba750c1e8df06d3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65e468c6d11e3c443ba750c1e8df06d3, type: 3}
 --- !u!1001 &1302828850
