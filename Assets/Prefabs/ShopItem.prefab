@@ -10232,7 +10232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43862eabfedd7c4a896bcef660669d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemPrice: 50
   Type: 0
   ItemKey: 
   AllSprites:
@@ -10245,6 +10244,15 @@ MonoBehaviour:
   - Key: plasma
     ItemSprite: {fileID: 21300000, guid: 1544c678b1bc99040b7bd1ef4f0e40e1, type: 3}
     Type: 0
+  - Key: damageUp
+    ItemSprite: {fileID: 21300000, guid: 41ab195f7ddd2714b91ce9dfb7f72289, type: 3}
+    Type: 1
+  - Key: fireRateUp
+    ItemSprite: {fileID: 21300000, guid: ef27cea92bc27eb45a9d9b3af6fe0e3c, type: 3}
+    Type: 1
+  - Key: healthUp
+    ItemSprite: {fileID: 21300000, guid: 9f7e894432398174e98da07834eb0edd, type: 3}
+    Type: 1
 --- !u!135 &1453150046598363029
 SphereCollider:
   m_ObjectHideFlags: 0

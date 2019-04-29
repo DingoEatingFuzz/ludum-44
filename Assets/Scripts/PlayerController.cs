@@ -28,6 +28,12 @@ public class PlayerController : MonoBehaviour
     public List<WeaponLookup> Weapons;
     public string ActiveWeaponName;
 
+    [HideInInspector]
+    public float FireRateModifier = 0;
+
+    [HideInInspector]
+    public float DamageModifier = 0;
+
     [Header("Debug")]
     public bool DoDebug = false;
 
@@ -67,6 +73,8 @@ public class PlayerController : MonoBehaviour
         ActiveWeaponName = "laser";
         if (StateData.MaxHealth > 0)
         {
+            DamageModifier = StateData.DamageModifier;
+            FireRateModifier = StateData.FireRateModifier;
             ActiveWeaponName = StateData.ActiveWeaponName;
 
             HealthComponent PlayerHealth = gameObject.GetComponent<HealthComponent>();
@@ -92,6 +100,25 @@ public class PlayerController : MonoBehaviour
                 lookup.SetActive(true);
             }
             ActiveWeaponName = WeaponName;
+        }
+    }
+
+    public void ActivateUpgrade(string UpgradeName)
+    {
+        switch (UpgradeName)
+        {
+            case "fireRateUp":
+                FireRateModifier++;
+                break;
+            case "damageUp":
+                DamageModifier++;
+                break;
+            case "healthUp":
+                HealthComponent PlayerHealth = gameObject.GetComponent<HealthComponent>();
+                PlayerHealth.Maximum = PlayerHealth.Maximum + 50;
+                break;
+            default:
+                break;
         }
     }
 

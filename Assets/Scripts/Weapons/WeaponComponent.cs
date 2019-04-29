@@ -13,6 +13,9 @@ public class WeaponComponent : MonoBehaviour
     [Tooltip("Delay between shots, in seconds")]
     public float ShotDelay = 0.5f;
 
+    [Tooltip("Shot delay decrease per FireRate upgrade")]
+    public float FireRateDecrease = 0.2f;
+
     [Tooltip("The amount of distance from the ProjectileSpawnLocation a projectile can spawn")]
     public float SpawnJitter = 0.0f;
 
@@ -25,6 +28,7 @@ public class WeaponComponent : MonoBehaviour
     private float Cooldown = 0.0f;
     private bool CooldownIsActive = false;
     private HealthComponent PlayerHealth;
+    private PlayerController Player;
 
     /// <summary>
     /// Awake
@@ -32,7 +36,9 @@ public class WeaponComponent : MonoBehaviour
     protected void Awake()
     {
         gameObject.SetActive(false);
+        Player = gameObject.transform.parent.gameObject.GetComponent<PlayerController>();
         PlayerHealth = gameObject.transform.parent.gameObject.GetComponent<HealthComponent>();
+
         if (ProjectileSpawnLocation == null)
         {
             throw new UnassignedReferenceException("Did you forget to specify the spawn location?");
@@ -69,7 +75,7 @@ public class WeaponComponent : MonoBehaviour
             }
 
             // Reset cooldown states
-            if (Cooldown > ShotDelay)
+            if (Cooldown > (ShotDelay - (Player.FireRateModifier * FireRateDecrease)))
             {
                 Cooldown = 0.0f;
                 CooldownIsActive = false;

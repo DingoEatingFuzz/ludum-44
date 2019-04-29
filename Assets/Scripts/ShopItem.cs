@@ -134,19 +134,20 @@ public class ShopItem : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             delay.enabled = true;
         }
-        player.GetComponent<HealthComponent>().Remove(itemPrice);
 
         switch(Type) {
             case ItemType.Weapon:
                 player.GetComponent<PlayerController>().ActivateWeapon(lookupKey);
                 break;
             case ItemType.Upgrade:
+                player.GetComponent<PlayerController>().ActivateUpgrade(lookupKey);
                 //item = ItemDB.Upgrades[lookupKey];
                 break;
             case ItemType.Charity:
                 //item = ItemDB.Charity[lookupKey];
                 break;
         }
+        player.GetComponent<HealthComponent>().Remove(itemPrice);
 
         available = false;
 
