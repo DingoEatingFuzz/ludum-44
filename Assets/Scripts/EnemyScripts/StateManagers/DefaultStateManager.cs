@@ -48,11 +48,7 @@ public class DefaultStateManager : StateManager
     /// <returns>True if the player is visible</returns>
     protected bool CanSeePlayer()
     {
-        if (Controller.Weapon == null)
-        {
-            return;
-        }
-        var RayStart = Controller.Weapon.ProjectileSpawnLocation.transform.position;
+        var RayStart = Controller.Weapon?.ProjectileSpawnLocation.transform.position ?? transform.position;
         var RayEnd = Player.transform.position;
 
         if (Physics.Raycast(RayStart, (RayEnd - RayStart).normalized, out RaycastHit Hit))
