@@ -5,12 +5,13 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[Flags]
 public enum EnemyState
 {
-    Dormant,
-    Alerted,
-    Engaged,
-    Retreat
+    Dormant = 0,
+    Alerted = 1,
+    Engaged = 2,
+    Retreat = 3
 }
 
 public enum Strategy
@@ -22,7 +23,7 @@ public enum Strategy
 
 public class EnemyData
 {
-    // Nothing here yet
+    
 }
 
 [System.Serializable]
@@ -109,7 +110,7 @@ public class EnemyControllerComponent : MonoBehaviour
     public float CheckInterval = .5f;
 
     //[Tooltip("Which weapon to use")]
-    public WeaponComponent Weapon { get; protected set; }
+    public EnemyWeaponComponent Weapon { get; protected set; }
 
     public BehaviorConfig DormantBehaviorConfig;// = new BehaviorConfig();
     public BehaviorConfig AlertedBehaviorConfig;// = new BehaviorConfig();
@@ -128,7 +129,8 @@ public class EnemyControllerComponent : MonoBehaviour
         get => _State;
         set
         {
-             AbortBehaviors();
+            if (value != _State)
+                AbortBehaviors();
             switch (value)
             {
                 case EnemyState.Dormant:
@@ -182,10 +184,8 @@ public class EnemyControllerComponent : MonoBehaviour
 
         Renderer = GetComponentInChildren<Renderer>();
         Manager = GetComponent<StateManager>();
-
-        var Weapons = GetComponentsInChildren<WeaponComponent>(true).ToList();
-        Weapon = Weapons.First();
-
+        Weapon = GetComponent<EnemyWeaponComponent>();
+        //GetComponentsInChildren<Component>().ToList().ForEach(c => Debug.Log(c));
         DeathComponent = GetComponent<DeathComponent>();
         
     }
@@ -242,7 +242,7 @@ public class EnemyControllerComponent : MonoBehaviour
 
             if (DoGetNext)
             {
-                CurrentBehaviorSet.GetNext()?.ForEach(e => e.Run(gameObject));
+                CurrentBehaviorSet.GetNext()?.ForEach(e => e.Run(gameObject, this));
             }
 
             yield return new WaitForSeconds(CheckInterval);
@@ -263,7 +263,7 @@ public class EnemyControllerComponent : MonoBehaviour
     protected void Died()
     {
         AbortBehaviors();
-
+        Debug.Log("DIED");
         // Lolded
         Destroy(gameObject);
     }

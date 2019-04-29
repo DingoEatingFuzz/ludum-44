@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+
 
 public abstract class Behavior : MonoBehaviour
 {
@@ -14,6 +16,6 @@ public abstract class Behavior : MonoBehaviour
         return IsRunning || IsAborting;
     }
 
-    public abstract void Run(GameObject Owner);
+    public abstract void Run(GameObject Owner, EnemyControllerComponent Controller);
     public abstract void Abort();
 }
