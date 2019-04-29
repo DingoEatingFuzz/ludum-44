@@ -2,9 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ItemType
+{
+    Weapon,
+    Upgrade,
+    Charity
+}
+
+[System.Serializable]
+public class ItemLookup  {
+    [Tooltip("Find the ItemKey in the ItemDB static class")]
+    public string Key;
+    public Sprite ItemSprite;
+    public ItemType Type;
+}
+
 public class ShopItem : MonoBehaviour
 {
     public int ItemPrice;
+    public ItemType Type;
+
+    [Tooltip("Leave blank to choose a random item of the Type")]
+    public string ItemKey;
+    public List<ItemLookup> AllSprites;
 
     // Start is called before the first frame update
     List<SpriteRenderer> delays = new List<SpriteRenderer>();
@@ -15,6 +35,7 @@ public class ShopItem : MonoBehaviour
     SpriteRenderer careCoinSymbol;
     SpriteRenderer itemIcon;
     SpriteRenderer poorIcon;
+    Sprite itemSprite;
     bool available;
 
     void Start()
@@ -34,6 +55,21 @@ public class ShopItem : MonoBehaviour
         poorIcon = transform.Find("poorIcon").GetComponent<SpriteRenderer>();
         poorIcon.gameObject.SetActive(false);
         available = true;
+
+        // Attempt to fetch the provided item sprite
+        Debug.Log("ItemKey: " + ItemKey);
+        if (ItemKey != "") {
+            var lookup = AllSprites.Find((ItemLookup l) => l.Type == Type && l.Key == ItemKey);
+            itemSprite = lookup?.ItemSprite;
+        }
+        // If there is nothing set, for the set item is invalid, choose at random among the Type
+        Debug.Log("ItemSprite: " + itemSprite);
+        if (itemSprite == null) {
+            var lookupsByType = AllSprites.FindAll((ItemLookup l) => l.Type == Type);
+            itemSprite = lookupsByType[Mathf.FloorToInt(Random.Range(0, lookupsByType.Count))].ItemSprite;
+            Debug.Log("No Sprite, chose one at random: " + itemSprite);
+        }
+        itemIcon.sprite = itemSprite;
     }
 
     void ResetDelays() {
