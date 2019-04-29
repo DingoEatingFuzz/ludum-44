@@ -76,6 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DamageData:
     Amount: 10
+    DamageIncreaseModifier: 2
     DestroyOnHit: 1
   Instigator: {fileID: 0}
 --- !u!1 &7543164080975884032
@@ -177,6 +178,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7243667149116872381}
     m_Modifications:
+    - target: {fileID: 5178517211744943574, guid: ef8727b78bf53554995f534d2598e700,
+        type: 3}
+      propertyPath: m_Name
+      value: ParticleLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5178517211744943574, guid: ef8727b78bf53554995f534d2598e700,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1973814690693761975, guid: ef8727b78bf53554995f534d2598e700,
         type: 3}
       propertyPath: m_Color.r
@@ -201,16 +212,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Range
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178517211744943574, guid: ef8727b78bf53554995f534d2598e700,
-        type: 3}
-      propertyPath: m_Name
-      value: ParticleLight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178517211744943574, guid: ef8727b78bf53554995f534d2598e700,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6843989657854641117, guid: ef8727b78bf53554995f534d2598e700,
         type: 3}
