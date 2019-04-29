@@ -24,14 +24,17 @@ public class GameStateComponent : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Copies persistent data
-    /// </summary>
-    public void StoreData(PersistentData Data, System.Action Callback)
+    public void StoreData()
     {
-        this.Data = Data;
-        Callback?.Invoke();
+        PersistentData data = new PersistentData(GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerController>());
+        this.Data = data;
     }
+
+    public PersistentData GetStoredData()
+    {
+        return this.Data;
+    }
+
 }
 
 
@@ -41,6 +44,18 @@ public class GameStateComponent : MonoBehaviour
 [System.Serializable]
 public struct PersistentData
 {
-    // health etc
+    public float CurrentHealth;
+    public float MaxHealth;
+    public string ActiveWeaponName;
+
+    //powerups
+
+    public PersistentData(PlayerController Player)
+    {
+        HealthComponent PlayerHealth = Player.gameObject.GetComponent<HealthComponent>();
+        CurrentHealth = PlayerHealth.Current;
+        MaxHealth = PlayerHealth.Maximum;
+        ActiveWeaponName = Player.ActiveWeaponName;
+    }
 }
 

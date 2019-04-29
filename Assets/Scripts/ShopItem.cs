@@ -112,7 +112,6 @@ public class ShopItem : MonoBehaviour
             } else
             {
                 poorIcon.gameObject.SetActive(true);
-                Debug.Log("Not enough moneys");
             }
         }
     }
@@ -133,7 +132,6 @@ public class ShopItem : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             delay.enabled = true;
         }
-        Debug.Log("Buy the thing!");
         player.GetComponent<HealthComponent>().Remove(itemPrice);
         player.GetComponent<PlayerController>().AddUpgrade("placeholder");
         available = false;
