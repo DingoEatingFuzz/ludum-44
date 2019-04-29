@@ -3,7 +3,9 @@ guid: 7c9dff44c9e792b4baae97ec2b572b63
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - DamageSound: {fileID: 8300000, guid: 578ba65a0ee46904e92246fbec091fa3, type: 3}
+  - DestroyedSound: {fileID: 8300000, guid: 9378110c644b8e24ab87f1a48e5fda0f, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
