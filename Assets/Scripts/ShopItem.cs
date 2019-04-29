@@ -13,7 +13,8 @@ public class ShopItem : MonoBehaviour
     float baseIntensity;
     TextMesh priceText;
     SpriteRenderer careCoinSymbol;
-    SpriteRenderer goneIcon;
+    SpriteRenderer itemIcon;
+    SpriteRenderer poorIcon;
     bool available;
 
     void Start()
@@ -29,8 +30,9 @@ public class ShopItem : MonoBehaviour
         priceText.text = ItemPrice + "cc";
 
         careCoinSymbol = transform.Find("CareCoinSymbol").GetComponent<SpriteRenderer>();
-        goneIcon = transform.Find("goneIcon").GetComponent<SpriteRenderer>();
-        goneIcon.gameObject.SetActive(false);
+        itemIcon = transform.Find("ItemIcon").GetComponent<SpriteRenderer>();
+        poorIcon = transform.Find("poorIcon").GetComponent<SpriteRenderer>();
+        poorIcon.gameObject.SetActive(false);
         available = true;
     }
 
@@ -57,6 +59,7 @@ public class ShopItem : MonoBehaviour
                 LightOn();
             } else
             {
+                poorIcon.gameObject.SetActive(true);
                 Debug.Log("Not enough moneys");
             }
         }
@@ -69,6 +72,7 @@ public class ShopItem : MonoBehaviour
             ResetDelays();
             LightOff();
         }
+        poorIcon.gameObject.SetActive(false);
     }
 
     IEnumerator BuyButSlowlyJustInCaseThePlayerChangesTheirMindOrDoesNotRealizeWhatIsHappening(GameObject player) {
@@ -81,10 +85,20 @@ public class ShopItem : MonoBehaviour
         player.GetComponent<HealthComponent>().Remove(ItemPrice);
         player.GetComponent<PlayerController>().AddUpgrade("placeholder");
         available = false;
-        goneIcon.gameObject.SetActive(true);
-        priceText.text = "";
-        var ccsColor = careCoinSymbol.color;
-        ccsColor.a = 0.0f;
-        careCoinSymbol.color = ccsColor;
+
+        var color = careCoinSymbol.color;
+        color.a = 0.25f;
+        careCoinSymbol.color = color;
+
+        color = priceText.color;
+        color.a = 0.25f;
+        priceText.color = color;
+
+        color = itemIcon.color;
+        color.a = 0.25f;
+        itemIcon.color = color;
+
+        transform.Find("Burst").GetComponent<ParticleSystem>()?.gameObject.SetActive(false);
+
     }
 }
