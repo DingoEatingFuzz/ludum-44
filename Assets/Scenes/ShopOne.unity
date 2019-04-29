@@ -454,7 +454,7 @@ PrefabInstance:
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
@@ -474,12 +474,14 @@ PrefabInstance:
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.data[0].Character
-      value: olympus
+      value: shopkeep
       objectReference: {fileID: 0}
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.data[0].Message
-      value: Khajiit has wares if you have gold.
+      value: "Welcome, Blood Runner. If you\u2019re willing to give up a little of
+        that life saving blood of yours, I\u2019ve got some wares you might be interested
+        in.\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
@@ -489,7 +491,9 @@ PrefabInstance:
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.data[1].Message
-      value: He's right you know.
+      value: "Upgrade your weapons, or maybe make the one you\u2019ve already got
+        a bit stronger, if you wish. Of course, the more blood you spend, the less
+        you\u2019ll have cached when you reach Earth."
       objectReference: {fileID: 0}
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
@@ -499,9 +503,19 @@ PrefabInstance:
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.data[2].Message
-      value: 'Just plz no stealing, mmkay?
-
-        (seriously tho)'
+      value: "Although it won\u2019t be worth anything if you don\u2019t make it home
+        alive, will it? Choose wisely..."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Messages.Array.data[3].Character
+      value: olympus
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Messages.Array.data[3].Message
+      value: "[Private Channel] Watch out for those Phobians. Let\u2019s just say
+        their interest in blood extends beyond its monetary value."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a0bb200566fb764f8aebf5cf73bc138, type: 3}

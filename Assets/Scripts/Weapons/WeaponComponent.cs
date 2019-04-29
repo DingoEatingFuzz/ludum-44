@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class WeaponComponent : MonoBehaviour
 {
     [Tooltip("Where this weapon spawns its projectiles")]
@@ -25,11 +26,13 @@ public class WeaponComponent : MonoBehaviour
     [Tooltip("How much health you lost with each shot")]
     public float HealthCost = 2.0f;
 
+    public AudioClip firingSound;
+
     private float Cooldown = 0.0f;
     private bool CooldownIsActive = false;
     private HealthComponent PlayerHealth;
     private PlayerController Player;
-
+    private AudioSource AudioSource;
     /// <summary>
     /// Awake
     /// </summary>
@@ -38,6 +41,7 @@ public class WeaponComponent : MonoBehaviour
         gameObject.SetActive(false);
         Player = gameObject.transform.parent.gameObject.GetComponent<PlayerController>();
         PlayerHealth = gameObject.transform.parent.gameObject.GetComponent<HealthComponent>();
+        AudioSource = GetComponent<AudioSource>();
 
         if (ProjectileSpawnLocation == null)
         {
@@ -61,6 +65,7 @@ public class WeaponComponent : MonoBehaviour
         Projectile.GetComponent<DamagerComponent>().Instigator = gameObject.transform.parent.gameObject;
         // Start the cooldown
         CooldownIsActive = true;
+        AudioSource.Play();
     }
 
     void Update()
