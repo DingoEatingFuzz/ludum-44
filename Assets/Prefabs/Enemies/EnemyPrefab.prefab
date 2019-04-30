@@ -85,22 +85,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67461c423f66091419245acccb30197b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CheckInterval: 0.5
+  CheckInterval: 0
   DormantBehaviorConfig:
     Behaviors: []
-    MultiStrategy: 0
+    MultiStrategy: 1
     CurrentBehavior: {fileID: 0}
   AlertedBehaviorConfig:
     Behaviors: []
-    MultiStrategy: 0
+    MultiStrategy: 1
     CurrentBehavior: {fileID: 0}
   EngagedBehaviorConfig:
     Behaviors: []
-    MultiStrategy: 0
+    MultiStrategy: 1
     CurrentBehavior: {fileID: 0}
   RetreatBehaviorConfig:
     Behaviors: []
-    MultiStrategy: 0
+    MultiStrategy: 1
     CurrentBehavior: {fileID: 0}
 --- !u!114 &5990081077404388267
 MonoBehaviour:
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4eefa75db2d6348a932f51449747e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Maximum: 100
+  Maximum: 50
 --- !u!114 &3618806482864682925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9dff44c9e792b4baae97ec2b572b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageSound: {fileID: 0}
+  DamageSound: {fileID: 8300000, guid: 578ba65a0ee46904e92246fbec091fa3, type: 3}
 --- !u!114 &8141179265117769559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7c7568127f6f94faa56a4390598594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FiringInterval: 0.2
+  FiringInterval: 0.5
   Jitter: 0.1
   Spread: 60
   ProjectileType: {fileID: 4493949610641859199, guid: 764dd39d282809640948040f2db81eff,
