@@ -220,6 +220,7 @@ public class EnemyControllerComponent : MonoBehaviour
         AlertedBehaviorConfig.Behaviors.AddRange(Behaviors.Where(b => b.StatesToRun.Any(s => s == EnemyState.Alerted)));
         EngagedBehaviorConfig.Behaviors.AddRange(Behaviors.Where(b => b.StatesToRun.Any(s => s == EnemyState.Engaged)));
         RetreatBehaviorConfig.Behaviors.AddRange(Behaviors.Where(b => b.StatesToRun.Any(s => s == EnemyState.Retreat)));
+
     }
 
     /// <summary>

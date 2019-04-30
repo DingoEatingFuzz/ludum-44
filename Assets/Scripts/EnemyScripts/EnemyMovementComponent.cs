@@ -33,16 +33,17 @@ public class EnemyMovementComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var Position = transform.position;
-
+        var Position = gameObject.transform.position;
         if (DoMove)
         {
-            var Difference = Position - MoveTarget;
-            var MoveDirection = Difference.normalized;
-        
-            if (Difference.magnitude < Movespeed)
+            var Difference = MoveTarget - Position;
+            var MoveDirection = Difference;
+            MoveDirection.z = 0f;
+            MoveDirection.Normalize();
+
+            if (Difference.magnitude > Movespeed && CheckInFront(MoveDirection))
             {
-                transform.position += MoveDirection * Movespeed;
+                gameObject.transform.position += MoveDirection * Movespeed * Time.deltaTime;
             } else
             {
                 RaiseArrived?.Invoke(this);
@@ -52,11 +53,27 @@ public class EnemyMovementComponent : MonoBehaviour
 
         if (LookAt != null)
         {
-            var LookDirection = Position - LookAt.transform.position;
+            var LookDirection = LookAt.transform.position - Position;
             LookDirection.Normalize();
             var Rotation = Quaternion.LookRotation(LookDirection, transform.up);
+            gameObject.transform.rotation = Rotation;
         }
     }
 
+    protected bool CheckInFront(Vector3 Direction)
+    {
+        var RayStart = gameObject.transform.position;
+        var RayEnd = Direction;
 
+        Debug.DrawLine(RayStart, RayStart + (Direction * Movespeed), Color.red, 60f);
+
+        if (Physics.Raycast(RayStart, RayEnd, out RaycastHit Hit, Movespeed))
+        {
+
+            Debug.Log(Hit.collider);
+            RaiseArrived?.Invoke(this);
+        }
+
+        return false;
+    }
 }

@@ -13,51 +13,29 @@ public class FireWeaponBehavior : Behavior
 
     protected Coroutine Routine;
 
-    protected bool IsFiring;
-    protected EnemyControllerComponent Controller;
-
     public override void Abort()
     {
-        StopFiring(false);
-        StopAllCoroutines();
-        SetIsRunning(false);
-        SetHasAborted();
+        IsAborting = true;
+        StopCoroutine(Routine);
+        Data.Weapon.StopFiring();
+        IsAborting = false;
+        IsRunning = false;
     }
 
-    public override void Run(GameObject Owner, EnemyControllerComponent Controller)
+    public override void Run()
     {
-        SetIsRunning(true);
-        SetHasRun();
-        this.Controller = Controller;
-        StartFiring();
+        IsRunning = true;
+        HasRun = true;
+        Routine = StartCoroutine(FireWeapon());
     }
 
-    protected void StartFiring(bool StartRoutine = true)
+    protected IEnumerator FireWeapon()
     {
-        IsFiring = true;
-        Controller.Weapon.StartFiring();
-        if (StartRoutine)
-            Routine = StartCoroutine(DeferStopFiring()); 
-    }
-
-    protected IEnumerator DeferStopFiring()
-    {
+        Data.Weapon.StartFiring();
         yield return new WaitForSeconds(FiringTime);
-        StopFiring();
-    }
-
-    private void StopFiring(bool StartRoutine = true)
-    {
-        IsFiring = false;
-        Controller.Weapon.StopFiring();
-        if (StartRoutine)
-            Routine = StartCoroutine(DeferStartFiring());
-    }
-
-    protected IEnumerator DeferStartFiring()
-    {
+        Data.Weapon.StopFiring();
         yield return new WaitForSeconds(Cooldown);
-        StartFiring();
+        IsRunning = false;
     }
 
     protected override void SetHasRun()
