@@ -289,14 +289,21 @@ public class EnemyControllerComponent : MonoBehaviour
     {
         CurrentBehaviorSet?.Behaviors.Where(b => b.ShouldAbort).ToList().ForEach(b => b.Abort());
     }
-
+    /// <summary>
+    /// Death Animation???
+    /// </summary>
+    protected void DeathAnimation()
+    {
+        GetComponent<Animator>().SetTrigger("Death");
+    }
     /// <summary>
     /// Death logic
     /// </summary>
     protected void Died()
     {
         AbortBehaviors();
+        DeathAnimation();
         // Lolded
-        Destroy(gameObject);
+        Destroy(gameObject, 1f);
     }
 }

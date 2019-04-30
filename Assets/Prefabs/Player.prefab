@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5493f83ebc998d42bbffb399f8d58cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeathSound: {fileID: 0}
   CanDie: 1
 --- !u!114 &503392398
 MonoBehaviour:

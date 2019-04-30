@@ -308,7 +308,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -336,7 +336,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -534,7 +534,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Particle System
+    path: MovementEffect
     classID: 1
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -568,6 +568,20 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 86906294
+      attribute: 4215373228
+      script: {fileID: 0}
+      typeID: 212
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 86906294
+      attribute: 2334886179
+      script: {fileID: 0}
+      typeID: 212
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 86906294
       attribute: 304273561
       script: {fileID: 0}
       typeID: 212
@@ -588,7 +602,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 922205677
+      path: 187357077
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -639,20 +653,6 @@ AnimationClip:
     - serializedVersion: 2
       path: 86906294
       attribute: 2526845255
-      script: {fileID: 0}
-      typeID: 212
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 86906294
-      attribute: 4215373228
-      script: {fileID: 0}
-      typeID: 212
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 86906294
-      attribute: 2334886179
       script: {fileID: 0}
       typeID: 212
       customType: 0
@@ -1050,7 +1050,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1078,7 +1078,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1276,7 +1276,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Particle System
+    path: MovementEffect
     classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves: []
