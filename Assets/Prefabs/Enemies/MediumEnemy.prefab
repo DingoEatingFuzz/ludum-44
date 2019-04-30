@@ -1,20 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &559925544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9007161992860005983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 697540296fd7344459f84ff457dcb496, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StatesToRun: 00000000
-  RunOnce: 0
-  WanderRange: 20
 --- !u!1001 &1033904990111751635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25,17 +10,17 @@ PrefabInstance:
     - target: {fileID: 8261559947239402380, guid: 97bf5e661b384d44ca7e12aac39bd97b,
         type: 3}
       propertyPath: m_Name
-      value: MediumEnemy Variant
+      value: MediumEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 3992047885337477284, guid: 97bf5e661b384d44ca7e12aac39bd97b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.323906
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3992047885337477284, guid: 97bf5e661b384d44ca7e12aac39bd97b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.183624
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3992047885337477284, guid: 97bf5e661b384d44ca7e12aac39bd97b,
         type: 3}
@@ -124,11 +109,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 468c3014a6624524c98163df28f7f997,
         type: 3}
-    m_RemovedComponents: []
+    - target: {fileID: 4850539726181415993, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: WanderRange
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165753489207870070, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: StatesToRun.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165753489207870070, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: StatesToRun.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165753489207870070, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: StatesToRun.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165753489207870070, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: StatesToRun.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431183028698283156, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431183028698283156, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2112160016, guid: 97bf5e661b384d44ca7e12aac39bd97b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 97bf5e661b384d44ca7e12aac39bd97b, type: 3}
---- !u!1 &9007161992860005983 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8261559947239402380, guid: 97bf5e661b384d44ca7e12aac39bd97b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1033904990111751635}
-  m_PrefabAsset: {fileID: 0}
