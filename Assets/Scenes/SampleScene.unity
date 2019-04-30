@@ -386,9 +386,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Messages:
-  - This is a test for Speakonia
-  - Mario!
-  - It that really you??
+  - Character: 
+    Message: 
+  - Character: 
+    Message: 
+  - Character: 
+    Message: 
   MaxOccurrences: 3
 --- !u!54 &765540900
 Rigidbody:
@@ -843,3 +846,72 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+--- !u!1001 &7878768548559144085
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7878768547072595518, guid: ab139d21f7d00b64c943e6e87a1ece92,
+        type: 3}
+      propertyPath: m_Name
+      value: Asteroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878768547072595513, guid: ab139d21f7d00b64c943e6e87a1ece92,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.674364
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878768547072595513, guid: ab139d21f7d00b64c943e6e87a1ece92,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.897145
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878768547072595513, guid: ab139d21f7d00b64c943e6e87a1ece92,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -62.974873
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878768547072595513, guid: ab139d21f7d00b64c943e6e87a1ece92,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878768547072595513, guid: ab139d21f7d00b64c943e6e87a1ece92,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878768547072595513, guid: ab139d21f7d00b64c943e6e87a1ece92,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878768547072595513, guid: ab139d21f7d00b64c943e6e87a1ece92,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878768547072595513, guid: ab139d21f7d00b64c943e6e87a1ece92,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878768547072595513, guid: ab139d21f7d00b64c943e6e87a1ece92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878768547072595513, guid: ab139d21f7d00b64c943e6e87a1ece92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878768547072595513, guid: ab139d21f7d00b64c943e6e87a1ece92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab139d21f7d00b64c943e6e87a1ece92, type: 3}
