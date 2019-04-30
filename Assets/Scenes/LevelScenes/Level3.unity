@@ -135,12 +135,12 @@ PrefabInstance:
     - target: {fileID: 2384409901903124514, guid: 61585d89052c77349b2c36928c048c5c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -40.7
+      value: -37.55
       objectReference: {fileID: 0}
     - target: {fileID: 2384409901903124514, guid: 61585d89052c77349b2c36928c048c5c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -27.9
+      value: -32.25
       objectReference: {fileID: 0}
     - target: {fileID: 2384409901903124514, guid: 61585d89052c77349b2c36928c048c5c,
         type: 3}
@@ -187,31 +187,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4125111053814841979, guid: 61585d89052c77349b2c36928c048c5c,
-        type: 3}
-      propertyPath: InitialModule.startSize.minMaxState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125111053814841979, guid: 61585d89052c77349b2c36928c048c5c,
-        type: 3}
-      propertyPath: InitialModule.startSizeY.minMaxState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125111053814841979, guid: 61585d89052c77349b2c36928c048c5c,
-        type: 3}
-      propertyPath: InitialModule.startSizeZ.minMaxState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125111053814841979, guid: 61585d89052c77349b2c36928c048c5c,
-        type: 3}
-      propertyPath: ShapeModule.m_Texture
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125111053814841979, guid: 61585d89052c77349b2c36928c048c5c,
-        type: 3}
-      propertyPath: TrailModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4850604498995252928, guid: 61585d89052c77349b2c36928c048c5c,
         type: 3}
       propertyPath: NextSceneName
@@ -224,15 +199,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3249005031866859197, guid: 61585d89052c77349b2c36928c048c5c,
         type: 3}
+      propertyPath: Messages.Array.data[0].Character
+      value: general
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249005031866859197, guid: 61585d89052c77349b2c36928c048c5c,
+        type: 3}
       propertyPath: Messages.Array.data[0].Message
       value: 'I''ll make you regret standing in my way, Max, just you wait.
 
         That blood will be mine!'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3249005031866859197, guid: 61585d89052c77349b2c36928c048c5c,
-        type: 3}
-      propertyPath: Messages.Array.data[0].Character
-      value: general
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61585d89052c77349b2c36928c048c5c, type: 3}

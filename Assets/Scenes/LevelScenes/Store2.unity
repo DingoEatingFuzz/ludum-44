@@ -217,6 +217,11 @@ PrefabInstance:
       propertyPath: NextSceneName
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3249005031866859197, guid: 61585d89052c77349b2c36928c048c5c,
+        type: 3}
+      propertyPath: Messages.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61585d89052c77349b2c36928c048c5c, type: 3}
 --- !u!1001 &174762856
