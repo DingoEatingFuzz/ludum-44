@@ -96,6 +96,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3165753489207870070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8261559947239402380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697540296fd7344459f84ff457dcb496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StatesToRun: 00000000
+  RunOnce: 0
+  WanderRange: 20
 --- !u!1001 &4850539727932419316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -106,7 +121,7 @@ PrefabInstance:
     - target: {fileID: 3600171806446077816, guid: 87456ae03ad816e4fa63afdbe6710cf5,
         type: 3}
       propertyPath: m_Name
-      value: LargeEnemy
+      value: SmallEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 8373896260879854672, guid: 87456ae03ad816e4fa63afdbe6710cf5,
         type: 3}
