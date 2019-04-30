@@ -86,7 +86,7 @@ public class WeaponComponent : MonoBehaviour
                 CooldownIsActive = false;
             }
 
-            if (!CooldownIsActive && Input.GetButton("PrimaryFire"))
+            if (!CooldownIsActive && Input.GetButton("PrimaryFire") && !Player.GetComponent<HealthComponent>().IsDepleted)
             {
                 // Allow for shooting
                 Shoot();
