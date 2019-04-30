@@ -25,7 +25,7 @@ public class ExitPortaler : MonoBehaviour
 
     public void Update()
     {
-        if (IsHidden && GameObject.FindGameObjectsWithTag("Finish").Length == 0)
+        if (IsHidden && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
             IsHidden = false;
             foreach(var Col in Colliders) { Col.enabled = true; }
