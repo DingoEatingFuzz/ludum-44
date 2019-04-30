@@ -190,7 +190,7 @@ PrefabInstance:
     - target: {fileID: 4850604498995252928, guid: 61585d89052c77349b2c36928c048c5c,
         type: 3}
       propertyPath: NextSceneName
-      value: Store2
+      value: GameOver
       objectReference: {fileID: 0}
     - target: {fileID: 3249005031866859197, guid: 61585d89052c77349b2c36928c048c5c,
         type: 3}
