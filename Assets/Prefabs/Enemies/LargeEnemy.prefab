@@ -269,6 +269,16 @@ PrefabInstance:
       propertyPath: Cooldown
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6911162521525427796, guid: 87456ae03ad816e4fa63afdbe6710cf5,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -6911162521525427796, guid: 87456ae03ad816e4fa63afdbe6710cf5,
+        type: 3}
+      propertyPath: BypassReverbZones
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9092254529329041504, guid: 87456ae03ad816e4fa63afdbe6710cf5,
         type: 3}
       propertyPath: m_LocalPosition.x
