@@ -79,7 +79,8 @@ public class PlayerController : MonoBehaviour
 
             HealthComponent PlayerHealth = gameObject.GetComponent<HealthComponent>();
             PlayerHealth.Maximum = StateData.MaxHealth;
-            PlayerHealth.Set(StateData.CurrentHealth);
+            bool isShop = SceneManager.GetActiveScene().name.Contains("Store");
+            PlayerHealth.Set(isShop ? StateData.CurrentHealth : PlayerHealth.Maximum);
         }
         ActivateWeapon(ActiveWeaponName);
 
