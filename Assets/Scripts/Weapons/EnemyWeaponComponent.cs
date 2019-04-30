@@ -70,6 +70,7 @@ public class EnemyWeaponComponent : MonoBehaviour
     /// </summary>
     public void Fire()
     {
+        NextShotTime = Time.time + FiringInterval;
         var SpawnLoction = transform.position;
         var SpawnRotation = transform.rotation;
         var LocationOffset = new Vector3(Random.Range(0f, Jitter) - Jitter / 2f, Random.Range(0f, Jitter) - Jitter / 2f, 0f);
