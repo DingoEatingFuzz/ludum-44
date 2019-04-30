@@ -1316,11 +1316,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3165753489207870070, guid: 97bf5e661b384d44ca7e12aac39bd97b,
-        type: 3}
-      propertyPath: StatesToRun.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8261559947239402380, guid: 97bf5e661b384d44ca7e12aac39bd97b,
         type: 3}
       propertyPath: m_Name
@@ -1380,6 +1375,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833502357344601583, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: Spread
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833502357344601583, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: Jitter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165753489207870070, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: StatesToRun.Array.size
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97bf5e661b384d44ca7e12aac39bd97b, type: 3}
@@ -1448,6 +1458,16 @@ PrefabInstance:
     - target: {fileID: 3992047885337477284, guid: 97bf5e661b384d44ca7e12aac39bd97b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833502357344601583, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: Spread
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833502357344601583, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: Jitter
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1959,6 +1979,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7833502357344601583, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: Spread
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833502357344601583, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: Jitter
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97bf5e661b384d44ca7e12aac39bd97b, type: 3}
 --- !u!1001 &2118382780
@@ -2096,6 +2126,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4125210925282008439, guid: 46b924026ba22164f9b180a5b975d07d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4125210925282008439, guid: 46b924026ba22164f9b180a5b975d07d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527868838966093629, guid: 46b924026ba22164f9b180a5b975d07d,
+        type: 3}
+      propertyPath: DamageData.Amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128947520396892220, guid: 46b924026ba22164f9b180a5b975d07d,
+        type: 3}
+      propertyPath: FiringInterval
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7128947520396892220, guid: 46b924026ba22164f9b180a5b975d07d,
+        type: 3}
+      propertyPath: Spread
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980960644120698918, guid: 46b924026ba22164f9b180a5b975d07d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980960644120698918, guid: 46b924026ba22164f9b180a5b975d07d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 559925544, guid: 46b924026ba22164f9b180a5b975d07d, type: 3}

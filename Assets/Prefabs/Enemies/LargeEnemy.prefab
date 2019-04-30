@@ -149,7 +149,7 @@ PrefabInstance:
     - target: {fileID: 3451627364816070939, guid: 87456ae03ad816e4fa63afdbe6710cf5,
         type: 3}
       propertyPath: Jitter
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3579085367688188161, guid: 87456ae03ad816e4fa63afdbe6710cf5,
         type: 3}
@@ -278,6 +278,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991722935139464824, guid: 87456ae03ad816e4fa63afdbe6710cf5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87456ae03ad816e4fa63afdbe6710cf5, type: 3}

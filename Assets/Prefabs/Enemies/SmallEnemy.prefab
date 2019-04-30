@@ -85,7 +85,7 @@ PrefabInstance:
     - target: {fileID: 3451627364816070939, guid: 87456ae03ad816e4fa63afdbe6710cf5,
         type: 3}
       propertyPath: Spread
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3451627364816070939, guid: 87456ae03ad816e4fa63afdbe6710cf5,
         type: 3}

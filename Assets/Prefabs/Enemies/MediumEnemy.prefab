@@ -93,6 +93,16 @@ PrefabInstance:
       propertyPath: FiringSound
       value: 
       objectReference: {fileID: 8300000, guid: 59c29332dbd16854bbe0a570b591b8b8, type: 3}
+    - target: {fileID: 7833502357344601583, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: FiringInterval
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833502357344601583, guid: 97bf5e661b384d44ca7e12aac39bd97b,
+        type: 3}
+      propertyPath: Spread
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8285465542401113589, guid: 97bf5e661b384d44ca7e12aac39bd97b,
         type: 3}
       propertyPath: m_LocalScale.y
