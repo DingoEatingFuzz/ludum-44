@@ -19,8 +19,9 @@ GameObject:
   - component: {fileID: 3451627364816070939}
   - component: {fileID: 5202545936298062379}
   - component: {fileID: -7902196074338541850}
-  - component: {fileID: 106966033304330647}
   - component: {fileID: -2017099990472286076}
+  - component: {fileID: 1872908493}
+  - component: {fileID: 1872908494}
   m_Layer: 9
   m_Name: EnemyPrefab
   m_TagString: Enemy
@@ -201,22 +202,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Movespeed: 8
   LookAt: {fileID: 0}
---- !u!114 &106966033304330647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3600171806446077816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67dba59828c59d742ba08222da6be5dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StatesToRun: 01000000
-  RunOnce: 0
-  FiringTime: 1
-  Cooldown: 1
 --- !u!114 &-2017099990472286076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +216,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StatesToRun: 0100000002000000
   RunOnce: 0
+--- !u!114 &1872908493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3600171806446077816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697540296fd7344459f84ff457dcb496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StatesToRun: 00000000020000000300000001000000
+  RunOnce: 0
+  WanderRange: 20
+--- !u!114 &1872908494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3600171806446077816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67dba59828c59d742ba08222da6be5dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StatesToRun: 02000000
+  RunOnce: 0
+  FiringTime: 1
+  Cooldown: 1
 --- !u!1 &8645085800693663213
 GameObject:
   m_ObjectHideFlags: 0

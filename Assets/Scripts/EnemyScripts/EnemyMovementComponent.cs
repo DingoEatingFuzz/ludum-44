@@ -19,7 +19,6 @@ public class EnemyMovementComponent : MonoBehaviour
             {
                 return;
             }
-
             _MoveTarget = value;
             DoMove = true;
         }
@@ -33,6 +32,7 @@ public class EnemyMovementComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         var Position = gameObject.transform.position;
         if (DoMove)
         {
@@ -41,10 +41,14 @@ public class EnemyMovementComponent : MonoBehaviour
             MoveDirection.z = 0f;
             MoveDirection.Normalize();
 
-            if (Difference.magnitude > Movespeed && CheckInFront(MoveDirection))
+            if (Difference.magnitude >= Movespeed && CheckInFront(MoveDirection))
             {
                 gameObject.transform.position += MoveDirection * Movespeed * Time.deltaTime;
-            } else
+                if (Difference.magnitude <= Movespeed)
+                {
+                    gameObject.transform.position = MoveTarget;
+                }
+            } else if (Difference.magnitude <= Movespeed)
             {
                 RaiseArrived?.Invoke(this);
                 DoMove = false;
@@ -55,7 +59,7 @@ public class EnemyMovementComponent : MonoBehaviour
         {
             var LookDirection = LookAt.transform.position - Position;
             LookDirection.Normalize();
-            var Rotation = Quaternion.LookRotation(LookDirection, transform.up);
+            var Rotation = Quaternion.LookRotation(LookDirection, gameObject.transform.up);
             gameObject.transform.rotation = Rotation;
         }
     }
@@ -65,15 +69,16 @@ public class EnemyMovementComponent : MonoBehaviour
         var RayStart = gameObject.transform.position;
         var RayEnd = Direction;
 
-        Debug.DrawLine(RayStart, RayStart + (Direction * Movespeed), Color.red, 60f);
-
         if (Physics.Raycast(RayStart, RayEnd, out RaycastHit Hit, Movespeed))
         {
 
-            Debug.Log(Hit.collider);
-            RaiseArrived?.Invoke(this);
+            if (Hit.collider.gameObject.tag != "Enemy" && Hit.collider.gameObject.tag != "Player")
+            {
+                RaiseArrived?.Invoke(this);
+                return false;
+            }
         }
 
-        return false;
+        return true;
     }
 }

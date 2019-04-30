@@ -167,6 +167,7 @@ public class EnemyControllerComponent : MonoBehaviour
                     break;
             }
             _State = value;
+            Debug.Log(_State);
         }
     }
 
