@@ -187,28 +187,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4850604498995252928, guid: 61585d89052c77349b2c36928c048c5c,
-        type: 3}
-      propertyPath: NextSceneName
-      value: Store2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3249005031866859197, guid: 61585d89052c77349b2c36928c048c5c,
-        type: 3}
-      propertyPath: Messages.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3249005031866859197, guid: 61585d89052c77349b2c36928c048c5c,
-        type: 3}
-      propertyPath: Messages.Array.data[0].Message
-      value: "So you must be this \x18Max Hart\x19 I\x19ve been hearing so much about.\nThe
-        one that\x19s been blowin\x19 up all my ships, killin\x19 my men.\nWell, let\x19s
-        just see about that."
-      objectReference: {fileID: 0}
-    - target: {fileID: 3249005031866859197, guid: 61585d89052c77349b2c36928c048c5c,
-        type: 3}
-      propertyPath: Messages.Array.data[0].Character
-      value: general
-      objectReference: {fileID: 0}
     - target: {fileID: 4125111053814841979, guid: 61585d89052c77349b2c36928c048c5c,
         type: 3}
       propertyPath: InitialModule.startSize.minMaxState
@@ -234,6 +212,28 @@ PrefabInstance:
       propertyPath: TrailModule.enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4850604498995252928, guid: 61585d89052c77349b2c36928c048c5c,
+        type: 3}
+      propertyPath: NextSceneName
+      value: Store2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249005031866859197, guid: 61585d89052c77349b2c36928c048c5c,
+        type: 3}
+      propertyPath: Messages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249005031866859197, guid: 61585d89052c77349b2c36928c048c5c,
+        type: 3}
+      propertyPath: Messages.Array.data[0].Message
+      value: "So you must be this \x18Max Hart\x19 I\x19ve been hearing so much about.\nThe
+        one that\x19s been blowin\x19 up all my ships, killin\x19 my men.\nWell, let\x19s
+        just see about that."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249005031866859197, guid: 61585d89052c77349b2c36928c048c5c,
+        type: 3}
+      propertyPath: Messages.Array.data[0].Character
+      value: general
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61585d89052c77349b2c36928c048c5c, type: 3}
 --- !u!1001 &333617204
@@ -243,26 +243,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -2017099990472286076, guid: 87456ae03ad816e4fa63afdbe6710cf5,
-        type: 3}
-      propertyPath: StatesToRun.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: -2017099990472286076, guid: 87456ae03ad816e4fa63afdbe6710cf5,
-        type: 3}
-      propertyPath: StatesToRun.Array.data[2]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -2017099990472286076, guid: 87456ae03ad816e4fa63afdbe6710cf5,
-        type: 3}
-      propertyPath: StatesToRun.Array.data[3]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7902196074338541850, guid: 87456ae03ad816e4fa63afdbe6710cf5,
-        type: 3}
-      propertyPath: Movespeed
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3600171806446077816, guid: 87456ae03ad816e4fa63afdbe6710cf5,
         type: 3}
       propertyPath: m_Name
@@ -449,6 +429,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 9992bd1c88264e54b90d326818a92ab9,
         type: 3}
+    - target: {fileID: -7902196074338541850, guid: 87456ae03ad816e4fa63afdbe6710cf5,
+        type: 3}
+      propertyPath: Movespeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -2017099990472286076, guid: 87456ae03ad816e4fa63afdbe6710cf5,
+        type: 3}
+      propertyPath: StatesToRun.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -2017099990472286076, guid: 87456ae03ad816e4fa63afdbe6710cf5,
+        type: 3}
+      propertyPath: StatesToRun.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2017099990472286076, guid: 87456ae03ad816e4fa63afdbe6710cf5,
+        type: 3}
+      propertyPath: StatesToRun.Array.data[3]
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1872908493, guid: 87456ae03ad816e4fa63afdbe6710cf5, type: 3}
       propertyPath: WanderRange
       value: 50
@@ -552,7 +552,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -24.889002, y: -2.019, z: -134.947}
 --- !u!1001 &412590959
 PrefabInstance:
@@ -951,7 +951,7 @@ PrefabInstance:
     - target: {fileID: 1871569360539114507, guid: 82d22b4646428b3408dce970584a80b2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1871569360539114507, guid: 82d22b4646428b3408dce970584a80b2,
         type: 3}
@@ -1343,23 +1343,48 @@ PrefabInstance:
     - target: {fileID: 3579085367688188161, guid: 87456ae03ad816e4fa63afdbe6710cf5,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 5.7416
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3579085367688188161, guid: 87456ae03ad816e4fa63afdbe6710cf5,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.7416
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3579085367688188161, guid: 87456ae03ad816e4fa63afdbe6710cf5,
         type: 3}
       propertyPath: m_LocalScale.z
       value: 5.7416
       objectReference: {fileID: 0}
+    - target: {fileID: 3579085367688188161, guid: 87456ae03ad816e4fa63afdbe6710cf5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3579085367688188161, guid: 87456ae03ad816e4fa63afdbe6710cf5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3579085367688188161, guid: 87456ae03ad816e4fa63afdbe6710cf5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3579085367688188161, guid: 87456ae03ad816e4fa63afdbe6710cf5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3579085367688188161, guid: 87456ae03ad816e4fa63afdbe6710cf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 3020919942879555487, guid: 87456ae03ad816e4fa63afdbe6710cf5,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 52433560b04578144b1cc2fa295addda,
+      objectReference: {fileID: 21300000, guid: 5405cc6889ab648429bdf0bf4fca67b8,
         type: 3}
     m_RemovedComponents:
     - {fileID: 1872908493, guid: 87456ae03ad816e4fa63afdbe6710cf5, type: 3}
