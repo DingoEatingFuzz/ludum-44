@@ -4819,7 +4819,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -9620,7 +9620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 811bea13b9992914c8de7c95b72af4af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSceneName: MainMenu
+  NextSceneName: Store1
 --- !u!1001 &6435227207122365452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9705,13 +9705,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
-      propertyPath: Messages.Array.size
-      value: 0
+      propertyPath: Messages.Array.data[0].Character
+      value: unknown
       objectReference: {fileID: 0}
-    - target: {fileID: 8383536264188809916, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: Messages.Array.data[0].Message
+      value: Max! Can you hear me Max? We *static* dying *static*. Please...?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Messages.Array.data[1].Character
+      value: max
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Messages.Array.data[1].Message
+      value: Hello? Are you still there? Weird, that voice sounded so familiar...
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a0bb200566fb764f8aebf5cf73bc138, type: 3}
