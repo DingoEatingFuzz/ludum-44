@@ -911,5 +911,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6554232162832102555, guid: 65e468c6d11e3c443ba750c1e8df06d3,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c5871088c7f55b0479b37d6b119c3017, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65e468c6d11e3c443ba750c1e8df06d3, type: 3}
