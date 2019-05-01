@@ -16,6 +16,8 @@ public class DialogueManager : MonoBehaviour
     public List<PortraitPair> Portraits;
 
     bool AwaitingConfirmation = true;
+    public int WaitFrames = 0;
+    bool TimeUp = false;
     bool isOpen = false;
 
     public bool IsOpen {
@@ -33,7 +35,17 @@ public class DialogueManager : MonoBehaviour
     {
         if (AwaitingConfirmation && Input.GetButton("PayRespects")) {
             AwaitingConfirmation = false;
+            WaitFrames = 0;
         };
+        if (WaitFrames < 800)
+        {
+            WaitFrames++;
+        }
+        else
+        {
+            AwaitingConfirmation = false;
+            WaitFrames = 0;
+        }
     }
 
     public IEnumerator Write(string Message, string Character) {
