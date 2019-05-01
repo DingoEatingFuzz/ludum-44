@@ -8,19 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Story.unity
     guid: 455c859d915fd0f4c90ff341687c29f8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Michael.unity
     guid: f3fd0c02994509e46926c55656477ef4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Adam.unity
     guid: a6fdabba47748a54ba5d8608080f4cf6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Andrew.unity
     guid: b87941df0be3e1a4b83423696a5e459f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Victor.unity
     guid: 4b7fc09c0a4ef184ebdb0323b56ef5e7
   - enabled: 1
@@ -36,12 +36,15 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelScenes/Store1.unity
     guid: bbcfc08912ca2264187e64c693b10058
   - enabled: 1
-    path: Assets/Scenes/LevelScenes/Level2.unity
+    path: Assets/Scenes/LevelScenes/Level3.unity
     guid: 4dae338dd6f962143a3a449601b14ad1
   - enabled: 1
     path: Assets/Scenes/LevelScenes/Store2.unity
     guid: 97e6d023bbda64b42bdc2b74391e9b89
   - enabled: 1
-    path: Assets/Scenes/LevelScenes/Level3.unity
+    path: Assets/Scenes/LevelScenes/Level4.unity
     guid: 424ab507d89f67c43bde9c2784958d4f
+  - enabled: 1
+    path: Assets/Scenes/LevelScenes/Level2.unity
+    guid: 5849bec242011a645a609216946fd1ba
   m_configObjects: {}
