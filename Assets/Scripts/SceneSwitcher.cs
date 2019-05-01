@@ -12,6 +12,22 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+    public void GoToInst()
+    {
+        SceneManager.LoadScene("Instructions");
+    }
+    public void GotoCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+    public void GotoStory()
+    {
+        SceneManager.LoadScene("Story");
+    }
+    public void doExitGame()
+    {
+        Application.Quit();
+    }
     // Start is called before the first frame update
     bool AwaitingConfirmation = true;
     bool isOpen = false;

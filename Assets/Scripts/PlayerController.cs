@@ -139,8 +139,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButton("SecondaryFire"))
         {
-            //HornSource.Play();
-            //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateComponent>().StoreData();
+            HornSource.Play();
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateComponent>().StoreData();
             //SceneManager.LoadScene("SampleScene");
         }
     }
