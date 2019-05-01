@@ -420,7 +420,7 @@ PrefabInstance:
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.size
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
@@ -445,7 +445,8 @@ PrefabInstance:
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.data[0].Message
-      value: Max, do you copy?
+      value: "Max, do you copy? This is Olympus Tower, Mars.\nWe\x19ll be checking
+        in on you and the other Blood Runners from time to time during your journey."
       objectReference: {fileID: 0}
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
@@ -455,8 +456,9 @@ PrefabInstance:
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.data[1].Message
-      value: "This is Olympus Tower, Mars.\nWe\u2019ll be checking in on you and the
-        other Blood Runners from time to time during your journey."
+      value: "You\x19've cleared Mars\x19 gravity by now. Only 250 million more kilometers
+        across the ecliptic plane and you\x19ll be back on Earth. Your HemoCorp SX
+        is a fast ship, she should be able to make the journey in about five days."
       objectReference: {fileID: 0}
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
@@ -466,10 +468,10 @@ PrefabInstance:
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.data[2].Message
-      value: "You\u2019ve cleared Mars\u2019 gravity by now. Only 250 million more
-        kilometers across the ecliptic plane and you\u2019ll be back on Earth. Your
-        HemoCorp SX is a fast ship, she should be able to make the journey in about
-        five days."
+      value: "For now, let\x19s review some basics. Your microbe-carrying blood is
+        Earth\x19s best hope for survival, making it the most valuable resource in
+        the known universe. Marauders will try and take advantage of that. And since
+        blood is pretty important to your survival, that means things will get...dangerous.\n"
       objectReference: {fileID: 0}
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
@@ -479,10 +481,8 @@ PrefabInstance:
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.data[3].Message
-      value: "For now, let\u2019s review some basics. Your microbe-carrying blood
-        is Earth\u2019s best hope for survival, making it the most valuable resource
-        in the known universe. Marauders will try and take advantage of that. And
-        since blood is pretty important to your survival, that means things will get\u2026\r\n"
+      value: ' Anyway, the point is, be careful. Earth is counting on you; your family
+        is counting on you. Good luck, Max Hart. Olympus Tower, signing off.'
       objectReference: {fileID: 0}
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
@@ -492,7 +492,7 @@ PrefabInstance:
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.data[4].Message
-      value: '...dangerous. Um, don''t let that scare you, though.'
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
@@ -502,8 +502,7 @@ PrefabInstance:
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: Messages.Array.data[5].Message
-      value: ' Anyway, the point is, be careful. Earth is counting on you; your family
-        is counting on you. Good luck, Max Hart. Olympus Tower, signing off!'
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a0bb200566fb764f8aebf5cf73bc138, type: 3}
@@ -1003,6 +1002,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Messages.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
@@ -1546,6 +1550,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 3600171806446077816, guid: 87456ae03ad816e4fa63afdbe6710cf5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8373896260879854672, guid: 87456ae03ad816e4fa63afdbe6710cf5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1740,6 +1749,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlackStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714237043176512629, guid: 10c310b3fd4663947ac81b0dad22a7d3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1714237043176512521, guid: 10c310b3fd4663947ac81b0dad22a7d3,
         type: 3}
