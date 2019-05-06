@@ -7,22 +7,9 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene("Level1");
     }
-
     public void GotoMenuScene()
     {
-        SceneManager.LoadScene("MainMenu");
-    }
-    public void GoToInst()
-    {
-        SceneManager.LoadScene("Instructions");
-    }
-    public void GotoCredits()
-    {
-        SceneManager.LoadScene("Credits");
-    }
-    public void GotoStory()
-    {
-        SceneManager.LoadScene("Story");
+        SceneManager.LoadScene("MainMenuRedux");
     }
     public void doExitGame()
     {
@@ -39,20 +26,5 @@ public class SceneSwitcher : MonoBehaviour
             return isOpen;
         }
     }
-    void Start()
-    {
-
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (AwaitingConfirmation && Input.GetButton("PayRespects"))
-        {
-            AwaitingConfirmation = false;
-        };
-        if (AwaitingConfirmation == false)
-        {
-            SceneManager.LoadScene("MainMenu");
-        };
-    }
 }
+  
