@@ -74,8 +74,7 @@ public class EnemyWeaponComponent : MonoBehaviour
         var SpawnLoction = transform.position;
         var SpawnRotation = transform.rotation;
         var LocationOffset = new Vector3(Random.Range(0f, Jitter) - Jitter / 2f, Random.Range(0f, Jitter) - Jitter / 2f, 0f);
-        var RotationOffset = Quaternion.Euler(Random.Range(0f, Spread) - Spread / 2f, Random.Range(0f, Spread) - Spread / 2f, 0f);
-
+        var RotationOffset = Quaternion.AngleAxis(Random.Range(-Spread, Spread), transform.up);
         var Projectile = Instantiate(ProjectileType, SpawnLoction + LocationOffset, SpawnRotation * RotationOffset);
         Projectile.GetComponent<DamagerComponent>().Instigator = gameObject;
         AudioSource.PlayOneShot(FiringSound);

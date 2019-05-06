@@ -56,12 +56,11 @@ public class WeaponComponent : MonoBehaviour
 
     public void Shoot() {
         Damageable.Damage(Player.gameObject, HealthCost);
-        var BasePosition = ProjectileSpawnLocation.transform.position;
-        var Offset = new Vector3(Random.Range(0, SpawnJitter) - SpawnJitter/2, Random.Range(0, SpawnJitter) - SpawnJitter/2, 0);
-
-        var BaseRotation = transform.rotation;
-        var RotationOffset = Quaternion.Euler(Random.Range(0, Inaccuracy) - Inaccuracy/2, Random.Range(0, Inaccuracy) - Inaccuracy/2, 0);
-        var Projectile = Instantiate(ProjectileType, BasePosition + Offset, BaseRotation * RotationOffset);
+        var SpawnLocation = ProjectileSpawnLocation.transform.position;
+        var SpawnRotation = transform.rotation;
+        var LocationOffset = new Vector3(Random.Range(0, SpawnJitter) - SpawnJitter/2, Random.Range(0, SpawnJitter) - SpawnJitter/2, 0);
+        var RotationOffset = Quaternion.Euler(Random.Range(0, Inaccuracy) - Inaccuracy / 2, Random.Range(0, Inaccuracy) - Inaccuracy / 2, 0);
+        var Projectile = Instantiate(ProjectileType, SpawnLocation + LocationOffset, SpawnRotation * RotationOffset);
         Projectile.GetComponent<DamagerComponent>().Instigator = gameObject.transform.parent.gameObject;
         // Start the cooldown
         CooldownIsActive = true;
@@ -96,9 +95,17 @@ public class WeaponComponent : MonoBehaviour
 
     void UpdateRotate()
     {
-        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = transform.position.z;
-        Quaternion rot = Quaternion.LookRotation(mousePos - transform.position, transform.up);
-        transform.rotation = rot;
+        transform.LookAt(TargetLocation, transform.up);
+    }
+
+    protected Vector3 TargetLocation
+    {
+        get
+        {
+            var Distance = Camera.main.transform.position.z - transform.position.z;
+            var Target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Target.z = transform.position.z;
+            return Target;
+        }
     }
 }
