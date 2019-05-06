@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DialogueSystem;
 
 public class DialogueTester : MonoBehaviour
 {
@@ -12,16 +13,11 @@ public class DialogueTester : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var DialogueManager = gameObject.GetComponent<DialogueManager>();
-        Coroutine dialogue;
-        if (!DialogueManager.IsOpen && Input.GetButtonDown("PayRespects")) {
-            dialogue = StartCoroutine(SpawnDialogue());
-        }
-    }
-
-    IEnumerator SpawnDialogue() {
-        var DialogueManager = gameObject.GetComponent<DialogueManager>();
-        yield return DialogueManager.Write("This is a test for", "olympus");
-        yield return DialogueManager.Write("Speakonia", "olympus");
+        Debug.Log("Is this even being used?");
+        //var DialogueManager = gameObject.GetComponent<DialogueManager>();
+        //Coroutine dialogue;
+        //if (!DialogueManager.IsOpen && Input.GetButtonDown("PayRespects")) {
+        //    dialogue = StartCoroutine(SpawnDialogue());
+        //}
     }
 }

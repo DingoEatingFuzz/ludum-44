@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DialogueSystem;
 
 [System.Serializable]
 public class PortraitPair {
@@ -9,72 +10,94 @@ public class PortraitPair {
     public Sprite Portrait;
 }
 
-public class DialogueManager : MonoBehaviour
+//[System.Serializable]
+//public class Dialogue
+//{
+//    public List<MessagePair> Messages;
+//    public int Priority = 0;
+//    public bool IsInteruptable;
+//}
+
+namespace DialogueSystem
 {
-    // Start is called before the first frame update
-    public GameObject DialogueCanvas;
-    public List<PortraitPair> Portraits;
-
-    bool AwaitingConfirmation = true;
-    public int WaitFrames = 0;
-    bool TimeUp = false;
-    bool isOpen = false;
-
-    public bool IsOpen {
-        get {
-            return isOpen;
-        }
-    }
-    void Start()
+    [System.Serializable]
+    public class DialogueManager : MonoBehaviour
     {
+        // Start is called before the first frame update
+        public GameObject DialogueCanvas;
+        protected List<Dialogue> DialogueQueue = new List<Dialogue>();
+        protected Coroutine DialogueCoroutine;
+        public float WaitForInputTime = 7f;
+        public bool IsOpen { get; protected set; }
 
-    }
+        protected bool AdvanceScript = false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (AwaitingConfirmation && Input.GetButton("PayRespects")) {
-            AwaitingConfirmation = false;
-            WaitFrames = 0;
-        };
-        if (WaitFrames < 800)
+
+
+        // Update is called once per frame
+        void Update()
         {
-            WaitFrames++;
+            AdvanceScript = Input.GetButton("PayRespects");
         }
-        else
+
+        /// <summary>
+        /// Adds a dialogue to the queue
+        /// </summary>
+        /// <param name="Dialogue">Dialogue to add</param>
+        public void AddToQueue(Dialogue Dialogue)
         {
-            AwaitingConfirmation = false;
-            WaitFrames = 0;
+            DialogueQueue.Add(Dialogue.Clone());
+
+            if (DialogueCoroutine is null)
+            {
+                DialogueCoroutine = StartCoroutine(RunThroughDialogue());
+            }
         }
-    }
 
-    public IEnumerator Write(string Message, string Character) {
-        var dialogue = Instantiate(DialogueCanvas);
-        var characterSprite = CharacterSpriteFor(Character);
+        protected IEnumerator RunThroughDialogue()
+        {
+            IsOpen = true;
+            if (DialogueQueue.Count == 0)
+            {
+                DialogueCoroutine = null;
 
-        var textBox = dialogue.transform.Find("Speech").GetComponent<Text>();
-        textBox.text = Message;
+            } else
+            {
+                MessagePair Message;
 
-        var portrait = dialogue.transform.Find("Portrait").GetComponent<Image>();
-        portrait.sprite = characterSprite;
+                var DialogueCanvas = Instantiate(this.DialogueCanvas);
+                var MessageBox = DialogueCanvas.transform.Find("Speech").GetComponent<Text>();
+                var Portrait = DialogueCanvas.transform.Find("Portrait").GetComponent<Image>();
 
-        // Immediately set the dialogue to the open state
-        isOpen = true;
-        yield return new WaitForSeconds(0.5f);
+                float EndTime;
 
-        // After a grace period, allow for confirmation
-        // (to avoid accientally confirming during the same button press)
-        AwaitingConfirmation = true;
-        yield return new WaitUntil(() => !AwaitingConfirmation);
+                while (DialogueQueue.Count > 0)
+                {
+                    if (DialogueQueue[0].Messages.Count == 0)
+                    {
+                        DialogueQueue.Remove(DialogueQueue[0]);
+                        continue;
+                    }
 
-        // Destroy the instantiated dialogue and reset the manager state
-        Destroy(dialogue);
-        isOpen = false;
-    }
 
-    Sprite CharacterSpriteFor(string Character) {
- //       Debug.Log(Character);
-//        Debug.Log(Portraits);
-        return Portraits.Find(p => p.Key == Character)?.Portrait;
+                    Message = DialogueQueue[0].Messages[0];
+                    Portrait.sprite = Message.CharacterSprite;
+                    MessageBox.text = Message.Message;
+
+                    yield return new WaitForSeconds(.5f);
+
+                    EndTime = Time.time + WaitForInputTime;
+
+                    yield return new WaitUntil(() => Time.time >= EndTime || AdvanceScript);
+
+                    DialogueQueue[0].Messages.Remove(Message);
+                }
+
+                Destroy(DialogueCanvas);
+                IsOpen = false;
+                DialogueCoroutine = null;
+
+            }
+        }
     }
 }
