@@ -1989,6 +1989,16 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 7f5dbf21c445cfb419fbb2e4fd8e5c62, type: 3}
+    - target: {fileID: 6554232162832102555, guid: 65e468c6d11e3c443ba750c1e8df06d3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6554232162832102555, guid: 65e468c6d11e3c443ba750c1e8df06d3,
+        type: 3}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9078568620416124282, guid: 65e468c6d11e3c443ba750c1e8df06d3,
         type: 3}
       propertyPath: DamageSound
@@ -2004,6 +2014,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3633825715586782074, guid: 3d217a8849157304daecec4c531c0d57,
         type: 3}
+    - target: {fileID: 503392398, guid: 65e468c6d11e3c443ba750c1e8df06d3, type: 3}
+      propertyPath: NewMessage
+      value: 
+      objectReference: {fileID: 8300000, guid: 2b356397834eaee489683a51d01d016a, type: 3}
     - target: {fileID: 806299574298023543, guid: 65e468c6d11e3c443ba750c1e8df06d3,
         type: 3}
       propertyPath: BypassReverbZones
