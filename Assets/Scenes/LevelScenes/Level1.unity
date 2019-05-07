@@ -242,6 +242,17 @@ PrefabInstance:
       propertyPath: Messages.Array.data[1].Message
       value: Hello? Are you still there? Weird, that voice sounded so familiar...
       objectReference: {fileID: 0}
+    - target: {fileID: 3249005031866859197, guid: 61585d89052c77349b2c36928c048c5c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249005031866859197, guid: 61585d89052c77349b2c36928c048c5c,
+        type: 3}
+      propertyPath: Dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 7fc0e5a4cee23994483c72e2c253bcde,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61585d89052c77349b2c36928c048c5c, type: 3}
 --- !u!1 &335379866
@@ -504,6 +515,12 @@ PrefabInstance:
       propertyPath: Messages.Array.data[5].Message
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 98a9c22326719dc458329a526fc067a9,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a0bb200566fb764f8aebf5cf73bc138, type: 3}
 --- !u!20 &467225881 stripped
@@ -889,6 +906,12 @@ PrefabInstance:
       value: "A new wave of Blood Runners, fresh for the pillaging. Let\u2019s get
         this party started, boys!\r\n"
       objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: ec76c7bd957777b48ab20665c869b341,
+        type: 2}
     - target: {fileID: 8383536264188809919, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: m_Center.x
@@ -1030,6 +1053,12 @@ PrefabInstance:
 
 '
       objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 2bc94ac3cf1efd74197e5438d739a61c,
+        type: 2}
     - target: {fileID: 8383536264188809919, guid: 0a0bb200566fb764f8aebf5cf73bc138,
         type: 3}
       propertyPath: m_Center.x
@@ -1159,6 +1188,12 @@ PrefabInstance:
       propertyPath: MaxOccurrences
       value: 999
       objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 19567c631f541cf4aa6374cb0e7c56ce,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a0bb200566fb764f8aebf5cf73bc138, type: 3}
 --- !u!1001 &1206406362
@@ -1954,6 +1989,12 @@ PrefabInstance:
       propertyPath: BypassReverbZones
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7441543262350294062, guid: 65e468c6d11e3c443ba750c1e8df06d3,
+        type: 3}
+      propertyPath: Dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: e22691cfbd3e2fa4ea7ef45ea2b327d2,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65e468c6d11e3c443ba750c1e8df06d3, type: 3}
 --- !u!1 &1884676964 stripped
@@ -2082,6 +2123,12 @@ PrefabInstance:
       propertyPath: MaxOccurrences
       value: 999
       objectReference: {fileID: 0}
+    - target: {fileID: 8383536264188809905, guid: 0a0bb200566fb764f8aebf5cf73bc138,
+        type: 3}
+      propertyPath: Dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 19567c631f541cf4aa6374cb0e7c56ce,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a0bb200566fb764f8aebf5cf73bc138, type: 3}
 --- !u!1001 &7106824564349785288
