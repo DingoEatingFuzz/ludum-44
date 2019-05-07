@@ -236,17 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogueCanvas: {fileID: 4616439949311326656, guid: cd092ef1b8148c84ab6ebf8074ff8438,
     type: 3}
-  Portraits:
-  - Key: olympus
-    Portrait: {fileID: 21300000, guid: dc842627bcaef1b4fa79795c884326d3, type: 3}
-  - Key: shopkeep
-    Portrait: {fileID: 21300000, guid: f5929c7e453fd1e4c9497cd63a0d1855, type: 3}
-  - Key: general
-    Portrait: {fileID: 21300000, guid: 65614c6312f922b4da20cdbe097d3600, type: 3}
-  - Key: unknown
-    Portrait: {fileID: 21300000, guid: 86f91b1efc5590c46a7d087269df4162, type: 3}
-  - Key: max
-    Portrait: {fileID: 21300000, guid: c6031d96cf5fa384bb465b4bed7272da, type: 3}
+  WaitForInputTime: 7
 --- !u!82 &806299574298023543
 AudioSource:
   m_ObjectHideFlags: 0
