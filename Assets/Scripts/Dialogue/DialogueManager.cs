@@ -15,8 +15,8 @@ namespace DialogueSystem
         protected List<Dialogue> DialogueQueue = new List<Dialogue>();
         protected Coroutine DialogueCoroutine;
         public float WaitForInputTime = 7f;
-        public int QueueCount => DialogueQueue.Count;
-        public bool IndicatorDisplayed = false; // Check if DialogueIndicatorCanvas is null instead of manually keeping track of it
+        protected int QueueCount => DialogueQueue.Count;
+        protected GameObject DialogueIndicator = null;
 
         private bool _AdvanceScript;
         protected bool AdvanceScript
@@ -36,29 +36,40 @@ namespace DialogueSystem
         void Update()
         {
             AdvanceScript = Input.GetButton("PayRespects");
-            Debug.Assert((DialogueQueue.Count == 0) == (DialogueCoroutine is null), "Something has gone wrong with the dialogue manager");
+            //Debug.Assert((DialogueQueue.Count == 0) == (DialogueCoroutine is null), "Something has gone wrong with the dialogue manager");
 
-            // This is redundant with the property QueueCount. The `=> DialogueQueue.Count` part tells 
-            // VS to treat it like a variable, but it acts like a function so it'll always be the current count
-            var QueueCount = DialogueQueue.Count;
-
-
-            #region Run the dialogue if the player presses the open key
-            // Basically, if there is dialogue and there is an indicator canvas (i.e., if it's not null) then
-            // start the display routine (like what is currently int he AddToQueue function
+            #region Display the dialogue indicator if there's messages waiting and the dialogue coroutine isn't running
+            if (!DialogueIndicator && QueueCount > 0 && DialogueCoroutine is null)
+            {
+                DialogueIndicator = Instantiate(DialogueIndicatorCanvas);
+                Text NumMessages = DialogueIndicator.transform.Find("NumMessages").GetComponent<Text>();
+                Text MessagesWaiting = DialogueIndicator.transform.Find("MessagesWaiting").GetComponent<Text>();
+                NumMessages.text = QueueCount.ToString();
+                //Make sure to have proper grammar
+                if(QueueCount == 1)
+                {
+                    MessagesWaiting.text = "Message Waiting";
+                }
+                Debug.Log($"Indicator created, should show {NumMessages.text}");
+                if (!DialogueIndicator.activeInHierarchy)
+                {
+                    DialogueIndicator.SetActive(true);
+                }
+            }
             #endregion
 
-            #region Check if the player is pressing the close key
-            // If you go with the CloseDialogue bool route then you would just set that to true when the appropriate key is pressed
-            // Similar to how AdvanceScript is working
+            #region Run the dialogue if it's not already running
+            if (DialogueCoroutine is null && DialogueIndicator.activeInHierarchy && AdvanceScript)
+            {
+                //Clear Dialogue Indicator
+                Text NumMessages = DialogueIndicator.transform.Find("NumMessages").GetComponent<Text>();
+                NumMessages.text = "0";
+                DialogueIndicator.SetActive(false);
+
+                //Show Dialogue
+                DialogueCoroutine = StartCoroutine(RunThroughDialogue());
+            }
             #endregion
-
-            // There should probably be some sort of "cooldown" to prevent opening and closing rapidly, but it probably won't actually be an issue
-            // If I were to make something like that I would use a "NextAllowedOpen" and "NextAllowedClose" with Time.time + cooldown duration
-            // then check that the time is past that before doing anything with open and close
-
-            // Also, the delay before you can advance the dialogue will still be in place after you open the dialogue, since it's basically like
-            // it's going the first time, so a cooldown between opening the dialogue and being able to advance would be redundant
         }
 
         /// <summary>
@@ -77,33 +88,26 @@ namespace DialogueSystem
                 //Debug.Log($"Added {Dialogue} to the queue, total dialogues is {DialogueQueue.Count}");
                 Added = true;
 
-                // Since we don't want it to run through the dialogue when stuff is added
-                // this should move somewhere else, replaced by the stuff you have below
-                #region Run the dialogue if it's not already running
-                if (DialogueCoroutine is null)
+                #region Update dialogue messages waiting indicator when new messages are received
+                if (DialogueIndicator && DialogueCoroutine is null)
                 {
-                    DialogueCoroutine = StartCoroutine(RunThroughDialogue());
+                    Text NumMessages = DialogueIndicator.transform.Find("NumMessages").GetComponent<Text>();
+                    Text MessagesWaiting = DialogueIndicator.transform.Find("MessagesWaiting").GetComponent<Text>();
+                    if (NumMessages.text != QueueCount.ToString())
+                    {
+                        if (QueueCount > 1)
+                        {
+                            MessagesWaiting.text = "Messages Waiting";
+                        }
+                        NumMessages.text = QueueCount.ToString();
+                        Debug.Log($"Updated, should show {NumMessages.text}");
+                        DialogueIndicator.SetActive(true);
+                    }
                 }
                 #endregion
 
-
-
-                #region Display the indicator if it's not displayed
-                if (IndicatorDisplayed == true) // you can use (DialogueIndicator != null) and you don't have to manually keep track of it
-                {
-                    #region
-                    // The dialogue should be destroyed when we're done with it, not right before we need a new one
-                    Destroy(this.DialogueIndicatorCanvas);
-                    var DialogueIndicator = Instantiate(this.DialogueIndicatorCanvas);
-                    #endregion
-
-
-                    DialogueIndicatorCanvas.SetActive(true); // This shouldn't be needed afaik
-                    var NumMessages = DialogueIndicator.transform.Find("NumMessages").GetComponent<Text>();
-                    NumMessages.text = QueueCount.ToString();
-                    Debug.Log($"Should show {NumMessages.text}");
-                } 
-                #endregion
+                // Since we don't want it to run through the dialogue when stuff is added
+                // this should move somewhere else, replaced by the stuff you have below
             }
 
             return Added;
@@ -122,16 +126,6 @@ namespace DialogueSystem
         {
             if (DialogueQueue.Count > 0)
             {
-
-                // Since the intent of the RunThroughDialogue is to do just that the waiting should happen outside
-                // this function, and then call it when we're no longer waiting
-                #region Wait on indicator
-                IndicatorDisplayed = true;
-                yield return new WaitUntil(() => AdvanceScript);
-                IndicatorDisplayed = false;
-                Destroy(DialogueIndicatorCanvas); // Leave this though since the indicator doesn't need to be open when the dialogue is playing
-                #endregion
-
                 Dialogue CurrentDialogue = null;
                 MessagePair CurrentMessage = null;
 
