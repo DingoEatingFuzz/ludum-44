@@ -15,6 +15,7 @@ MonoBehaviour:
   Messages:
   - Character: 3
     Message: Whoa buddy, are you drunk? Watch out for asteroids!
-  Priority: 2
-  Interruptible: 0
-  ResumeAfterInterrupt: 0
+    _AutoAdvance: 7
+  _Priority: 2
+  _Interruptible: 0
+  _ResumeAfterInterrupt: 0

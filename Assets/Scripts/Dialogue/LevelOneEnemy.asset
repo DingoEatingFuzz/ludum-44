@@ -16,9 +16,11 @@ MonoBehaviour:
   - Character: 3
     Message: Sensors detect Maurader activity in the area. Your ship's computer won't
       let you jump untill all the hostiles have been cleared out!
+    _AutoAdvance: 7
   - Character: 5
     Message: Looks like a fresh wave of Blood Runners leaving the surface. Let's get
       this party started, boys!
-  Priority: 2
-  Interruptible: 0
-  ResumeAfterInterrupt: 0
+    _AutoAdvance: 7
+  _Priority: 2
+  _Interruptible: 1
+  _ResumeAfterInterrupt: 1

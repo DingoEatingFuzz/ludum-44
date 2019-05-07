@@ -18,14 +18,17 @@ MonoBehaviour:
       Mars' gravity. Only 250 million more kilometers across the ecliptic plane and
       you\u2019ll be back on Earth. Your HemoCorp SX should be able to make the journey
       in no time. For now, let\x19s review some basics."
+    _AutoAdvance: 7
   - Character: 3
     Message: "As your know, your microbe-carrying blood is Earth\u2019s best hope
       for survival, making it the most valuable resource in the known universe. Marauders
       will try and take advantage of that. And since blood is, of course, key to your
       survival, that means things may get ...dangerous.\n"
+    _AutoAdvance: 7
   - Character: 3
     Message: The point is, be careful. Earth is counting on you; your family is counting
       on you. Good luck, Max Hart. Olympus Tower, signing off.
-  Priority: 1
-  Interruptible: 1
-  ResumeAfterInterrupt: 1
+    _AutoAdvance: 7
+  _Priority: 1
+  _Interruptible: 1
+  _ResumeAfterInterrupt: 1

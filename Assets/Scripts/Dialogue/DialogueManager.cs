@@ -10,10 +10,13 @@ namespace DialogueSystem
     public class DialogueManager : MonoBehaviour
     {
         // Start is called before the first frame update
+        public GameObject DialogueIndicatorCanvas;
         public GameObject DialogueCanvas;
         protected List<Dialogue> DialogueQueue = new List<Dialogue>();
         protected Coroutine DialogueCoroutine;
         public float WaitForInputTime = 7f;
+        public int QueueCount => DialogueQueue.Count;
+        public bool IndicatorDisplayed = false;
 
         private bool _AdvanceScript;
         protected bool AdvanceScript
@@ -34,6 +37,7 @@ namespace DialogueSystem
         {
             AdvanceScript = Input.GetButton("PayRespects");
             Debug.Assert((DialogueQueue.Count == 0) == (DialogueCoroutine is null), "Something has gone wrong with the dialogue manager");
+            var QueueCount = DialogueQueue.Count;
         }
 
         /// <summary>
@@ -49,11 +53,22 @@ namespace DialogueSystem
                 Dialogue.ResetEnumerator();                
                 DialogueQueue.Add(Dialogue);
                 DialogueQueue = DialogueQueue.OrderByDescending(d => d.Priority).ToList();
-                Debug.Log($"Added {Dialogue} to the queue, total dialogues is {DialogueQueue.Count}");
+                //Debug.Log($"Added {Dialogue} to the queue, total dialogues is {DialogueQueue.Count}");
                 Added = true;
+
                 if (DialogueCoroutine is null)
                 {
                     DialogueCoroutine = StartCoroutine(RunThroughDialogue());
+                }
+                //Update waiting message indicator count.
+                if (IndicatorDisplayed == true)
+                {
+                    Destroy(this.DialogueIndicatorCanvas);
+                    var DialogueIndicator = Instantiate(this.DialogueIndicatorCanvas);
+                    DialogueIndicatorCanvas.SetActive(true);
+                    var NumMessages = DialogueIndicator.transform.Find("NumMessages").GetComponent<Text>();
+                    NumMessages.text = QueueCount.ToString();
+                    Debug.Log($"Should show {NumMessages.text}");
                 }
             }
 
@@ -73,6 +88,12 @@ namespace DialogueSystem
         {
             if (DialogueQueue.Count > 0)
             {
+                //Messages Waiting Indicator
+                IndicatorDisplayed = true;
+                yield return new WaitUntil(() => AdvanceScript);
+                IndicatorDisplayed = false;
+                Destroy(DialogueIndicatorCanvas);
+
                 Dialogue CurrentDialogue = null;
                 MessagePair CurrentMessage = null;
 
