@@ -5,33 +5,57 @@ using UnityEngine;
 
 namespace DialogueSystem
 {
+    /// <summary>
+    /// Messages and configuration for a dialogue
+    /// Note: Changes to these values will persist after runtime, so don't modify the list elements!
+    /// </summary>
     [System.Serializable]
-    //[CreateAssetMenu(fileName = "MovementData", menuName = "Scriptables/Movement/MovementData")]
     [CreateAssetMenu(fileName = "Dialogue", menuName = "Scriptables/Dialogue/Dialogue")]
-    public class Dialogue : ScriptableObject
+    public class Dialogue : ScriptableObject, IEnumerable<MessagePair>
     {
         [Tooltip("Messages for this dialogue")]
-        public List<MessagePair> Messages;
+        [SerializeField]
+        private List<MessagePair> Messages;
 
-        [Tooltip("Priority to play")]
-        public Priority Priority = Priority.Normal;
+        public Priority Priority { get => _Priority; }
+        [Tooltip("Higher priority will play before lower priority")]
+        [SerializeField]
+        private Priority _Priority = Priority.Normal;
 
+        public bool Interruptible { get => _Interruptible; }
         [Tooltip("Can other dialogues interrupt this one?")]
-        public bool Interruptible = false;
+        [SerializeField]
+        private bool _Interruptible = false;
 
+        public bool ResumeAfterInterrupt { get => _ResumeAfterInterrupt; }
         [Tooltip("Should this dialogue continue after being interrupted?")]
-        public bool ResumeAfterInterrupt = false;
+        [SerializeField]
+        private bool _ResumeAfterInterrupt = false;
 
-        public Dialogue Clone()
-        {
-            Dialogue Clone = CreateInstance<Dialogue>();
-
-            Clone.Messages = Messages.Select(o => o).ToList();
-            Clone.Priority = Priority;
-            Clone.Interruptible = Interruptible;
-            Clone.ResumeAfterInterrupt = ResumeAfterInterrupt;
-
-            return Clone;
+        [System.NonSerialized]
+        private IEnumerator<MessagePair> _Enumerator;
+        /// <summary>
+        /// Gets a persistent enumerator
+        /// </summary>
+        public IEnumerator<MessagePair> Enumerator {
+            get
+            {
+                if (_Enumerator is null)
+                {
+                    _Enumerator = Messages.GetEnumerator();
+                }
+                return _Enumerator;
+            }
         }
-    } 
+
+        public IEnumerator<MessagePair> GetEnumerator()
+        {
+            return ((IEnumerable<MessagePair>)Messages).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<MessagePair>)Messages).GetEnumerator();
+        }
+    }
 }

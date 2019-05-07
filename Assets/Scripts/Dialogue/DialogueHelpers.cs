@@ -4,9 +4,6 @@ using UnityEngine;
 
 namespace DialogueSystem
 {
-    /// <summary>
-    /// List of all the portraits
-    /// </summary>
     public enum Character
     {
         None,
@@ -19,9 +16,9 @@ namespace DialogueSystem
 
     public enum Priority
     {
-        None,
-        Normal,
-        High
+        None = 0,
+        Normal = 1,
+        High = 2
     }
 
     /// <summary>
@@ -41,13 +38,24 @@ namespace DialogueSystem
             };
     }
 
+    /// <summary>
+    /// Dialogue message and the character that is transmitting the message
+    /// </summary>
     [System.Serializable]
     public class MessagePair
     {
-        public Character Character;
-        [TextArea]
-        public string Message;
-        
+        public Character Character { get => _character; }
+        [Tooltip("The character that is speaking this message"), SerializeField]
+        private Character _character = Character.None;
+
+        public string Message { get => message; }
+        [Tooltip("Message text"), TextArea, SerializeField]
+        private string message;
+
+        public float AutoAdvance { get => _AutoAdvance; }
+        [Tooltip("How long until this message advances"), SerializeField]
+        private float _AutoAdvance = 7f;
+
         public Sprite CharacterSprite
         {
             get => CharacterLookup.Characters[Character];

@@ -13,18 +13,27 @@ MonoBehaviour:
   m_Name: TestDialogue
   m_EditorClassIdentifier: 
   Messages:
-  - Character: 1
-    Message: Suck
-  - Character: 2
-    Message: M'dick?
-  - Character: 3
-    Message: M'dick?
-  - Character: 4
-    Message: M'dick?
-  - Character: 5
-    Message: '...'
-  - Character: 5
-    Message: M'dick?
-  Priority: 1
-  Interruptible: 0
-  ResumeAfterInterrupt: 0
+  - _character: 1
+    message: SUCK
+    _AutoAdvance: 3
+  - _character: 2
+    message: m'dick?
+    _AutoAdvance: 1
+  - _character: 3
+    message: m'dick?
+    _AutoAdvance: 1
+  - _character: 4
+    message: m'dick?
+    _AutoAdvance: 1
+  - _character: 5
+    message: '...'
+    _AutoAdvance: 1
+  - _character: 5
+    message: '... ...'
+    _AutoAdvance: 2
+  - _character: 5
+    message: m'dick?
+    _AutoAdvance: 4
+  _Priority: 2
+  _Interruptible: 0
+  _ResumeAfterInterrupt: 0
