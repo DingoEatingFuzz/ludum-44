@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialogue: {fileID: 11400000, guid: 5adfc4c6a2d6fa84db2b309f6ff3678f, type: 2}
-  Retriggerable: 0
-  ResetOnRetrigger: 0
+  Retriggerable: 99
+  ResetOnRetrigger: 1
 --- !u!65 &100610658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -339,8 +339,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialogue: {fileID: 11400000, guid: 4dce91eb47a21f34c81e37b8b28a4afd, type: 2}
-  Retriggerable: 0
-  ResetOnRetrigger: 0
+  Retriggerable: 99
+  ResetOnRetrigger: 1
 --- !u!65 &519283636
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -616,7 +616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialogue: {fileID: 11400000, guid: 546944b6fd662d04dbde9088a1fd4a15, type: 2}
-  Retriggerable: 0
+  Retriggerable: 99
   ResetOnRetrigger: 0
 --- !u!65 &1182470464
 BoxCollider:

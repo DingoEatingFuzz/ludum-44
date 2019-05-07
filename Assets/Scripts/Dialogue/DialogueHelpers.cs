@@ -44,13 +44,13 @@ namespace DialogueSystem
     [System.Serializable]
     public class MessagePair
     {
-        public Character Character { get => _character; }
+        public Character DisplayCharacter { get => Character; }
         [Tooltip("The character that is speaking this message"), SerializeField]
-        private Character _character = Character.None;
+        private Character Character = Character.None;
 
-        public string Message { get => message; }
+        public string DisplayMessage { get => Message; }
         [Tooltip("Message text"), TextArea, SerializeField]
-        private string message;
+        private string Message;
 
         public float AutoAdvance { get => _AutoAdvance; }
         [Tooltip("How long until this message advances"), SerializeField]

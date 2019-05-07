@@ -41,13 +41,15 @@ namespace DialogueSystem
         /// </summary>
         /// <param name="Dialogue">Dialogue to add</param>
         /// <returns>True if dialogue was added</returns>
-        public bool AddToQueue(Dialogue Dialogue)
+        public bool AddToQueue(Dialogue Dialogue, bool ResetDialogue = true)
         {
             var Added = false;
             if (DialogueQueue.Contains(Dialogue) == false)
             {
+                Dialogue.ResetEnumerator();                
                 DialogueQueue.Add(Dialogue);
                 DialogueQueue = DialogueQueue.OrderByDescending(d => d.Priority).ToList();
+                Debug.Log($"Added {Dialogue} to the queue, total dialogues is {DialogueQueue.Count}");
                 Added = true;
                 if (DialogueCoroutine is null)
                 {
@@ -89,7 +91,6 @@ namespace DialogueSystem
                     }
                     else
                     {
-                        Debug.Assert(CurrentDialogue != null);
                         if (CurrentDialogue.Interruptible && CurrentDialogue != DialogueQueue.First())
                         {
                             if (CurrentDialogue.ResumeAfterInterrupt == false)
@@ -105,11 +106,9 @@ namespace DialogueSystem
                     if (CurrentDialogue.Enumerator.MoveNext())
                     {
                         CurrentMessage = CurrentDialogue.Enumerator.Current;
-                        Debug.Log($"Enumerator moved to {CurrentMessage}");
                     }
                     else
                     {
-                        Debug.Log("Enumerator couldn't move to next");
                         DialogueQueue.Remove(CurrentDialogue);
                         CurrentDialogue = null;
                         continue;
@@ -117,14 +116,13 @@ namespace DialogueSystem
                     #endregion
 
                     Portrait.sprite = CurrentMessage.CharacterSprite;
-                    MessageBox.text = CurrentMessage.Message;
+                    MessageBox.text = CurrentMessage.DisplayMessage;
 
                     EndTime = Time.time + CurrentMessage.AutoAdvance;
 
                     yield return new WaitForSeconds(.5f);
                     yield return new WaitUntil(() => Time.time >= EndTime || AdvanceScript);
 
-                    Debug.Log("Advancing dialogue");
                 } while (DialogueQueue.Count > 0);
 
                 Destroy(DialogueCanvas);

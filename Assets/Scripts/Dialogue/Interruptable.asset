@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Interruptable
   m_EditorClassIdentifier: 
   Messages:
-  - _character: 5
-    message: First message
+  - Character: 1
+    Message: First message waiting for input
     _AutoAdvance: Infinity
-  - _character: 5
-    message: Second message
+  - Character: 1
+    Message: Second message waiting for input
     _AutoAdvance: Infinity
   _Priority: 1
   _Interruptible: 1

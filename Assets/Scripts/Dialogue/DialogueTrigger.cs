@@ -46,11 +46,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (other.tag == "Player" && RemainingTriggers > 0)
         {
-            var Added = other.GetComponent<DialogueManager>()?.AddToQueue(Dialogue) == true;
-            if (ResetOnRetrigger)
-            {
-                Dialogue.Enumerator.Reset();
-            }
+            var Added = other.GetComponent<DialogueManager>()?.AddToQueue(Dialogue, ResetOnRetrigger) == true;
             if (Added)
             {
                 --RemainingTriggers;

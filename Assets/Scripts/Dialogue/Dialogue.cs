@@ -48,6 +48,15 @@ namespace DialogueSystem
             }
         }
 
+        /// <summary>
+        /// Resets and returns the persistent enumerator
+        /// </summary>
+        public IEnumerator<MessagePair> ResetEnumerator()
+        {
+            _Enumerator = Messages.GetEnumerator();
+            return _Enumerator;
+        }
+
         public IEnumerator<MessagePair> GetEnumerator()
         {
             return ((IEnumerable<MessagePair>)Messages).GetEnumerator();
