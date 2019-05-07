@@ -26,6 +26,7 @@ public class DialogueTrigger : MonoBehaviour
         if (other.tag == "Player" && Occurrences < MaxOccurrences)
         {
             other.GetComponent<DialogueManager>()?.AddToQueue(Dialogue.Clone());
+            Occurrences++;
         }
     }
 }
