@@ -48,7 +48,7 @@ namespace DialogueSystem
                 //Make sure to have proper grammar
                 if(QueueCount == 1)
                 {
-                    MessagesWaiting.text = "Message Waiting";
+                    MessagesWaiting.text = "Message Waiting [Space]";
                 }
                 Debug.Log($"Indicator created, should show {NumMessages.text}");
                 if (!DialogueIndicator.activeInHierarchy)
@@ -97,7 +97,7 @@ namespace DialogueSystem
                     {
                         if (QueueCount > 1)
                         {
-                            MessagesWaiting.text = "Messages Waiting";
+                            MessagesWaiting.text = "Messages Waiting [Space]";
                         }
                         NumMessages.text = QueueCount.ToString();
                         Debug.Log($"Updated, should show {NumMessages.text}");
