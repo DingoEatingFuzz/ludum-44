@@ -11,12 +11,20 @@ namespace DialogueSystem
     public class DialogueManager : MonoBehaviour
     {
         // Start is called before the first frame update
+        [SerializeField, Tooltip("Sound for new message received")]
         public AudioClip NewMessage;
+
+        [SerializeField, Tooltip("Dialogue Indicator prefab")]
         public GameObject DialogueIndicatorCanvas;
+
+        [SerializeField, Tooltip("Dialogue HUD prefab")]
         public GameObject DialogueCanvas;
-        protected List<Dialogue> DialogueQueue = new List<Dialogue>();
-        protected Coroutine DialogueCoroutine;
+
+        [SerializeField, Tooltip("Time before dialogue advances automatically")]
         public float WaitForInputTime = 7f;
+
+        protected List<Dialogue> DialogueQueue = new List<Dialogue>();
+        protected Coroutine DialogueCoroutine; 
         protected int QueueNum => DialogueQueue.Count;
         protected GameObject DialogueIndicator = null;
         protected GameObject DialogueHud = null;

@@ -15,16 +15,5 @@ public class SceneSwitcher : MonoBehaviour
     {
         Application.Quit();
     }
-    // Start is called before the first frame update
-    bool AwaitingConfirmation = true;
-    bool isOpen = false;
-
-    public bool IsOpen
-    {
-        get
-        {
-            return isOpen;
-        }
-    }
 }
   
