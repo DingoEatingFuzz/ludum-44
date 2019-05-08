@@ -17,10 +17,14 @@ namespace DialogueSystem
         protected List<Dialogue> DialogueQueue = new List<Dialogue>();
         protected Coroutine DialogueCoroutine;
         public float WaitForInputTime = 7f;
-        protected int QueueCount => DialogueQueue.Count;
+        protected int QueueNum => DialogueQueue.Count;
         protected GameObject DialogueIndicator = null;
+        protected GameObject DialogueHud = null;
+        protected Dialogue CurrentDialogue = null;
+        protected MessagePair CurrentMessage = null;
         private AudioSource AudioSource;
 
+        protected bool Dismiss;
         private bool _AdvanceScript;
         protected bool AdvanceScript
         {
@@ -38,24 +42,14 @@ namespace DialogueSystem
         // Update is called once per frame
         void Update()
         {
+            var QueueCount = QueueNum+1;
             AdvanceScript = Input.GetButton("PayRespects");
+            Dismiss = Input.GetButton("Dismiss");
 
             #region Display the dialogue indicator if there's messages waiting and the dialogue coroutine isn't running
             if (!DialogueIndicator && QueueCount > 0 && DialogueCoroutine is null)
             {
-                DialogueIndicator = Instantiate(DialogueIndicatorCanvas);
                 Text NumMessages = DialogueIndicator.transform.Find("NumMessages").GetComponent<Text>();
-                Text MessagesWaiting = DialogueIndicator.transform.Find("MessagesWaiting").GetComponent<Text>();
-                NumMessages.text = QueueCount.ToString();
-                //Make sure to have proper grammar
-                if(QueueCount == 1)
-                {
-                    MessagesWaiting.text = "Message Waiting [Space]";
-                }
-                if (!DialogueIndicator.activeInHierarchy)
-                {
-                    DialogueIndicator.SetActive(true);
-                }
             }
             #endregion
 
@@ -64,13 +58,48 @@ namespace DialogueSystem
             {
                 //Clear Dialogue Indicator
                 Text NumMessages = DialogueIndicator.transform.Find("NumMessages").GetComponent<Text>();
+                Text MessagesWaiting = DialogueIndicator.transform.Find("MessagesWaiting").GetComponent<Text>();
+                MessagesWaiting.text = "Message Received";
                 NumMessages.text = "0";
                 DialogueIndicator.SetActive(false);
 
                 //Show Dialogue
+                DialogueHud.SetActive(true);
                 DialogueCoroutine = StartCoroutine(RunThroughDialogue());
             }
             #endregion
+
+            #region Remove dialogue from queue if dismissed
+            if (QueueCount > 0 && Dismiss)
+            {
+                //Clear Dialogue Indicator
+                Text NumMessages = DialogueIndicator.transform.Find("NumMessages").GetComponent<Text>();
+                Text MessagesWaiting = DialogueIndicator.transform.Find("MessagesWaiting").GetComponent<Text>();
+                MessagesWaiting.text = "Message Received";
+                NumMessages.text = "0";
+                DialogueIndicator.SetActive(false);
+                DialogueQueue.Clear();
+                DialogueQueue = new List<Dialogue>();
+                QueueCount++;
+
+                //Clear Dialogue if open
+                if (DialogueCoroutine != null)
+                {
+                }
+            }
+            #endregion
+
+        }
+        void Awake()
+        {
+            if(!DialogueIndicator)
+            {
+                DialogueIndicator = Instantiate(DialogueIndicatorCanvas);
+            }
+            if(!DialogueHud)
+            {
+                DialogueHud = Instantiate(DialogueCanvas);
+            }
         }
 
         /// <summary>
@@ -82,6 +111,7 @@ namespace DialogueSystem
         {
             AudioSource = GetComponent<AudioSource>();
             var Added = false;
+            var QueueCount = QueueNum+1;
             if (DialogueQueue.Contains(Dialogue) == false)
             {
                 AudioSource.PlayOneShot(NewMessage);
@@ -99,7 +129,7 @@ namespace DialogueSystem
                     {
                         if (QueueCount > 1)
                         {
-                            MessagesWaiting.text = "Messages Waiting [Space]";
+                            MessagesWaiting.text = "Messages Received";
                         }
                         NumMessages.text = QueueCount.ToString();
                         DialogueIndicator.SetActive(true);
@@ -122,14 +152,12 @@ namespace DialogueSystem
         /// <returns>IEnumerator</returns>
         protected IEnumerator RunThroughDialogue()
         {
+            DialogueHud.SetActive(true);
             if (DialogueQueue.Count > 0)
             {
-                Dialogue CurrentDialogue = null;
-                MessagePair CurrentMessage = null;
 
-                var DialogueCanvas = Instantiate(this.DialogueCanvas);
-                var MessageBox = DialogueCanvas.transform.Find("Speech").GetComponent<Text>();
-                var Portrait = DialogueCanvas.transform.Find("Portrait").GetComponent<Image>();
+                var MessageBox = DialogueHud.transform.Find("Speech").GetComponent<Text>();
+                var Portrait = DialogueHud.transform.Find("Portrait").GetComponent<Image>();
 
                 float EndTime;
 
@@ -173,11 +201,20 @@ namespace DialogueSystem
 
                     yield return new WaitForSeconds(.5f);
 
-                    yield return new WaitUntil(() => Time.time >= EndTime || AdvanceScript);
+                    
+
+                    if(Dismiss)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        yield return new WaitUntil(() => Time.time >= EndTime || AdvanceScript || Dismiss);
+                    }
 
                 } while (DialogueQueue.Count > 0);
 
-                Destroy(DialogueCanvas);
+                DialogueHud.SetActive(false);
             }
             PostDialogueCoroutine();
         }
