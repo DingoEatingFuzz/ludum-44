@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6163bf73372995840b6077c3d6867e93, type: 3}
+  m_Name: Level2Exit
+  m_EditorClassIdentifier: 
+  Messages:
+  - Character: 1
+    Message: "So you must be this \u2018Max Hart\u2019 I\u2019ve been hearing so much
+      about. The one that\u2019s been blowin\u2019 up all my ships, killin\u2019 my
+      men. Well, let\u2019s just see about that."
+    _AutoAdvance: 7
+  _Priority: 1
+  _Interruptible: 0
+  _ResumeAfterInterrupt: 0

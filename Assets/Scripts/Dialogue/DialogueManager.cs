@@ -80,7 +80,7 @@ namespace DialogueSystem
             #region Remove dialogue from queue if dismissed
             if (QueueCount > 0 && Dismiss)
             {
-                //Clear Dialogue Indicator
+                //Clear Dialogue and Indicator
                 Text NumMessages = DialogueIndicator.transform.Find("NumMessages").GetComponent<Text>();
                 Text MessagesWaiting = DialogueIndicator.transform.Find("MessagesWaiting").GetComponent<Text>();
                 MessagesWaiting.text = "Message Received";
@@ -89,25 +89,16 @@ namespace DialogueSystem
                 DialogueQueue.Clear();
                 DialogueQueue = new List<Dialogue>();
                 QueueCount++;
-
-                //Clear Dialogue if open
-                if (DialogueCoroutine != null)
-                {
-                }
             }
             #endregion
 
         }
+        //Runs once?
         void Awake()
         {
-            if(!DialogueIndicator)
-            {
-                DialogueIndicator = Instantiate(DialogueIndicatorCanvas);
-            }
-            if(!DialogueHud)
-            {
-                DialogueHud = Instantiate(DialogueCanvas);
-            }
+            DialogueIndicator = Instantiate(DialogueIndicatorCanvas);
+            DialogueHud = Instantiate(DialogueCanvas);
+            AudioSource = GetComponent<AudioSource>();
         }
 
         /// <summary>
@@ -117,7 +108,6 @@ namespace DialogueSystem
         /// <returns>True if dialogue was added</returns>
         public bool AddToQueue(Dialogue Dialogue, bool ResetDialogue = true)
         {
-            AudioSource = GetComponent<AudioSource>();
             var Added = false;
             var QueueCount = QueueNum+1;
             if (DialogueQueue.Contains(Dialogue) == false)
@@ -135,12 +125,14 @@ namespace DialogueSystem
                     Text MessagesWaiting = DialogueIndicator.transform.Find("MessagesWaiting").GetComponent<Text>();
                     if (NumMessages.text != QueueCount.ToString())
                     {
+                        NumMessages.text = QueueCount.ToString();
+                        DialogueIndicator.SetActive(true);
+
+                        //Grammar
                         if (QueueCount > 1)
                         {
                             MessagesWaiting.text = "Messages Received";
                         }
-                        NumMessages.text = QueueCount.ToString();
-                        DialogueIndicator.SetActive(true);
                     }
                 }
                 #endregion

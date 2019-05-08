@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6163bf73372995840b6077c3d6867e93, type: 3}
+  m_Name: LevelTwoStart
+  m_EditorClassIdentifier: 
+  Messages:
+  - Character: 3
+    Message: "How\u2019s it going buddy? Looks like you made it through the first
+      Marauder blockade. Great job."
+    _AutoAdvance: 7
+  - Character: 3
+    Message: "Listen, communications with Earth have been touchy since the Red Plague
+      has taken over. We told them you\u2019re on the way, but there\u2019s no way
+      of knowing if they got the message. Anyway, we\u2019ll check back in later.
+      Good luck. Olympus Tower, signing off.\r"
+    _AutoAdvance: 7
+  _Priority: 1
+  _Interruptible: 1
+  _ResumeAfterInterrupt: 1

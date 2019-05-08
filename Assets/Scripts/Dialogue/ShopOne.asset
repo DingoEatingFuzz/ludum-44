@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6163bf73372995840b6077c3d6867e93, type: 3}
+  m_Name: ShopOne
+  m_EditorClassIdentifier: 
+  Messages:
+  - Character: 4
+    Message: "Welcome, Blood Runner. If you\u2019re willing to give up a little of
+      that life saving blood of yours, I\u2019ve got some wares you might be interested
+      in."
+    _AutoAdvance: 7
+  - Character: 4
+    Message: "Upgrade your weapons, or maybe make the one you\u2019ve already got
+      a bit stronger, if you wish. Of course, the more blood you spend, the less you\u2019ll
+      have cached when you reach Earth."
+    _AutoAdvance: 7
+  - Character: 4
+    Message: "Although it won\u2019t be worth anything if you don\u2019t make it home
+      alive, will it? Choose wisely\u2026"
+    _AutoAdvance: 7
+  - Character: 3
+    Message: "[Private Channel] Watch out for those Phobians. Let\u2019s just say
+      their interest in blood extends beyond its monetary value."
+    _AutoAdvance: 7
+  _Priority: 1
+  _Interruptible: 1
+  _ResumeAfterInterrupt: 1
